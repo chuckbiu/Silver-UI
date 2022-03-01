@@ -3,20 +3,22 @@
     <div class="is-tooltip__trigger" ref="TNode" v-on="smallTooltipevents">
       <slot></slot>
     </div>
-    <div class="is-tooltip__popper" ref="PNode" v-if="isOpen">
-      <slot name="content">
-        {{ content }}
-      </slot>
-      {{ trigger }}
-    </div>
+    <Transition name="fade">
+      <div class="is-tooltip__popper" ref="PNode" v-if="isOpen">
+        <slot name="content">
+          {{ content }}
+        </slot>
+        {{ trigger }}
+      </div>
+    </Transition>
   </div>
 </template>
 <script lang="ts" setup>
 import type { TooltipProps, TooltipEmits } from "./type.ts";
 import { createPopper } from "@popperjs/core";
-import { reactive, ref, watch } from "vue";
+import { reactive, ref, watch, computed } from "vue";
 import type { Instance } from "@popperjs/core";
-import  useClickOutside  from '../../hooks/useClickOutside.ts'
+import useClickOutside from "../../hooks/useClickOutside.ts";
 // 父组件传进来的值
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: "bottom",
@@ -32,7 +34,12 @@ const PNode = ref<HTMLElement | null>(null);
 let propperInstance: null | Instance = null;
 // 弹窗是否展示
 const isOpen = ref(false);
-
+const popperOptions = computed(() => {
+  return {
+    placements: props.placement,
+    ...props.popperOptions,
+  };
+});
 // hover
 const open = () => {
   isOpen.value = true;
@@ -62,11 +69,11 @@ const attachEvents = () => {
 };
 attachEvents();
 
-useClickOutside(TooltipNode, ()=>{
- if (isOpen.value && PNode.value){
-    isOpen.value = !isOpen.value
- }
-})
+useClickOutside(TooltipNode, () => {
+  if (isOpen.value && PNode.value) {
+    isOpen.value = !isOpen.value;
+  }
+});
 
 watch(
   isOpen,
@@ -75,7 +82,7 @@ watch(
       if (TNode.value && PNode.value) {
         // 根据两个节点都存在创建对应实例
         propperInstance = createPopper(TNode.value, PNode.value, {
-          placement: props.placement,
+          ...popperOptions.value,
         });
       }
     } else {
@@ -100,7 +107,5 @@ watch(
 );
 </script>
 <style scoped>
-.is-tooltip__popper {
-  border: 1px solid red;
-}
+
 </style>

@@ -1,15 +1,20 @@
 <script setup lang="ts">
+import type { Options } from "@popperjs/core";
 
 import Button  from "@/components/Button/Button.vue";
 import Collapse from "@/components/Collapse/Collapse.vue";
 import CollapseItem from "@/components/Collapse/CollapseItem.vue";
-import { onMounted, ref} from "vue";
+import { onMounted, reactive, ref} from "vue";
 import type {ButtonInstance} from "@/components/Button/types.ts";
 import Tooltip from "@/components/Tooltip/Tooltip.vue";
 const buttonRef = ref< ButtonInstance | null>(null)
 const openValue = ref(['1-1'])
 const changeTrigger = ref('hover')
+const optionsTooltips: Partial<Options> = reactive({
+  placement: 'bottom-end',
+  strategy: 'fixed'
 
+})
 setTimeout(()=>{
   changeTrigger.value = 'click'
 }, 2000)
@@ -122,7 +127,7 @@ onMounted(()=>{
     </CollapseItem>
   </Collapse>
 
-<Tooltip content="Bottom Center prompts info" :trigger="changeTrigger">
+<Tooltip content="Bottom Center prompts info" :trigger="changeTrigger" :popper-options="optionsTooltips">
   <button class="btn">test Tooltip</button>
 </Tooltip>
 
