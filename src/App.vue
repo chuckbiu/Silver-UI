@@ -18,57 +18,63 @@ onMounted(()=>{
     <Button  type="primary">
       primary
     </Button>
-    <Button  >
+    <Button  type="success">
       success
     </Button>
-    <Button  >
+    <Button  type="info">
       info
     </Button>
-    <Button  >
+    <Button  type="warning">
       warning
     </Button>
-    <Button  ref="buttonRef">
+    <Button  type="danger">
       danger
     </Button>
+    <br>
+
   <br>
-  <Button  ref="buttonRef" >
+  <Button  ref="buttonRef" plain>
     default
   </Button>
-  <Button  >
+  <Button  plain type="primary">
     primary
   </Button>
-  <Button  >
+  <Button  plain type="success">
     success
   </Button>
-  <Button  >
+  <Button  plain type="info">
     info
   </Button>
-  <Button  >
+  <Button  plain type="warning">
     warning
   </Button>
-  <Button  >
+  <Button plain type="danger" >
     danger
   </Button>
   <br>
+  <br>
+
   <Button   round>
     Round
   </Button>
-  <Button  >
+  <Button  round type="primary">
     primary
   </Button>
-  <Button  >
+  <Button  round type="success">
     success
   </Button>
-  <Button  >
+  <Button  round type="info">
     info
   </Button>
-  <Button  >
+  <Button round type="warning" >
     warning
   </Button>
-  <Button  >
+  <Button  round type="danger">
     danger
   </Button>
   <br>
+  <br>
+
 <!--  size-->
   <Button size="large">
     large

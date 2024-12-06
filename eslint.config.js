@@ -17,6 +17,13 @@ export default [
     // 取消单个单词组件语法检查
     rules: {
       'vue/multi-word-component-names': 'off'
-    }
+    },
+
+  },
+  {
+    files: ['postcss.config.*'], // 仅对 postcss 配置文件生效
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
   }
 ]

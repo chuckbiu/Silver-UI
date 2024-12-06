@@ -15,22 +15,31 @@
     --si-button-outline-color: var(--si-color-primary-light-5);
     --si-button-active-color: var(--si-text-color-primary);
 }
-.si-button--primary {
-    --si-button-font-weight: var(--si-font-weight-primary);
-    --si-button-border-color: var(--si-color-primary);
-    --si-button-bg-color: var(--si-color-primary);
+@each $val in primary,success,warning,info,danger {
+    .si-button--$(val) {
     --si-button-text-color: var(--si-color-white);
-    --si-button-disabled-text-color: var(--si-disabled-text-color);
-    --si-button-disabled-bg-color: var(--si-fill-color-blank);
-    --si-button-disabled-border-color: var(--si-border-color-light);
+    --si-button-bg-color: var(--si-color-$(val));
+    --si-button-border-color: var(--si-color-$(val));
+    --si-button-outline-color: var(--si-color-$(val)-light-5);
+    --si-button-active-color: var(--si-color-$(val)-dark-2);
     --si-button-hover-text-color: var(--si-color-white);
-    --si-button-hover-bg-color: var(--si-color-primary-light-3);
-    --si-button-hover-border-color: var(--si-color-primary-light-7);
-    --si-button-active-text-color: var(--si-button-hover-text-color);
-    --si-button-active-border-color: var(--si-color-primary);
-    --si-button-active-bg-color: var(--si-button-hover-bg-color);
-    --si-button-outline-color: var(--si-color-primary-light-5);
-    --si-button-active-color: var(--si-text-color-primary);
+    --si-button-hover-bg-color: var(--si-color-$(val)-light-3);
+    --si-button-hover-border-color: var(--si-color-$(val)-light-3);
+    --si-button-active-bg-color: var(--si-color-$(val)-dark-2);
+    --si-button-active-border-color: var(--si-color-$(val)-dark-2);
+    --si-button-disabled-text-color: var(--si-color-white);
+    --si-button-disabled-bg-color: var(--si-color-$(val)-light-5);
+    --si-button-disabled-border-color: var(--si-color-$(val)-light-5);
+}
+    .si-button--$(val).is-plain {
+    --si-button-text-color: var(--si-color-$(val));
+    --si-button-bg-color: var(--si-color-$(val)-light-9);
+    --si-button-border-color: var(--si-color-$(val)-light-5);
+    --si-button-hover-text-color: var(--si-color-white);
+    --si-button-hover-bg-color: var(--si-color-$(val));
+    --si-button-hover-border-color: var(--si-color-$(val));
+    --si-button-active-text-color: var(--si-color-white);
+}
 }
 .si-button {
     display: inline-flex;
