@@ -12,8 +12,8 @@ export interface  buttonProps {
   round?: boolean, // 是否圆角按钮
   circle?: boolean, // 是否圆形按钮
   nativeType?: NativeType
-  // loading?: boolean, // 是否加载中状态
-  // icon?: string, // 图标类名
+  loading?: boolean, // 是否加载中状态
+  icon?: string, // 图标类名
 }
 export interface ButtonInstance{
   ref: HTMLButtonElement

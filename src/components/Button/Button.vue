@@ -9,8 +9,9 @@
       'is-disabled': disabled,
       'is-round': round,
       'is-plain': plain
-    }" :disabled="disabled" :autofocus="autofocus" :type="nativeType"
+    }" :disabled="disabled || loading" :autofocus="autofocus" :type="nativeType"
   >
+  
       <span>
         <slot></slot>
       </span>
