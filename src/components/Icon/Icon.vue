@@ -1,6 +1,6 @@
 <template>
     <i class="si-icon" :class="{
-        [`si-icon--${type}`]: type    }" :style="CustomStyle">
+        [`si-icon--${type}`]: type    }" :style="CustomStyle" v-bind="$attrs">
         <!-- Your icon content goes here -->
          <fontAwesomeIcon v-bind="filterProps"/>
         
@@ -9,9 +9,10 @@
 
 <script setup lang="ts">
     import type { FontAwesomeIconProps } from "./types.ts";
+    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
     import _ from 'lodash';
     /* import font awesome icon component */
-    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
     import { computed } from 'vue';
     defineOptions({
         name: 'SiIcon',

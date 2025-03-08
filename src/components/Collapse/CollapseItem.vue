@@ -3,7 +3,6 @@ import { inject, computed } from "vue";
 import type { CollapseItemProps } from "./types";
 import { collapseInjectionKey } from "./types";
 import Icon from "@/components/Icon/Icon.vue";
-
 defineOptions({
   name: "siCollapseItem",
 });
@@ -63,12 +62,11 @@ function onLeave(el: HTMLElement) {
     >
       <!-- 具名插槽 -->
       <slot name="title">{{ title }}</slot>
-      <Icon icon="arrow-up"></Icon>
-
+      <Icon icon="arrow-right" class="header-angle"></Icon>
     </div>
     <Transition name="slide" 
         @before-enter="onBeforeEnter"
-                @enter="onEnter"
+       @enter="onEnter"
   @after-enter="onAfterEnter"
   @before-leave="onBeforeLeave"
   @leave="onLeave"

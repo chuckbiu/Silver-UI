@@ -1,6 +1,7 @@
 <template>
-  <button class="si-button"
-          ref="_ref"
+  <button
+    class="si-button"
+    ref="_ref"
     :class="{
       [`si-button--${type}`]: type,
       [`si-button--${size}`]: size,
@@ -8,31 +9,38 @@
       'is-size': size,
       'is-disabled': disabled,
       'is-round': round,
-      'is-plain': plain
-    }" :disabled="disabled || loading" :autofocus="autofocus" :type="nativeType"
+      'is-plain': plain,
+      'is-loading': loading,
+    }"
+    :disabled="disabled || loading"
+    :type="nativeType"
+    v-bind="$attrs"
   >
-  
-      <span>
-        <slot></slot>
-      </span>
+    <Icon icon="fa-solid fa-spinner" v-if="loading" spin></Icon>
+    <Icon :icon="icon" v-if="icon"></Icon>
+    <span>
+      <slot></slot>
+    </span>
   </button>
 </template>
 <script setup lang="ts">
-import type { buttonProps } from './types.ts'
-import {ref} from 'vue'
-withDefaults(defineProps<buttonProps>(),{
-  nativeType: 'button'
-})
-defineOptions({
-  name: 'SButton'
-})
-const _ref = ref<HTMLButtonElement>()
-defineExpose({
-  ref: _ref
-})
+import type { buttonProps } from "./types.ts";
+import { ref } from "vue";
+import Icon from "@/components/Icon/Icon.vue";
 
+withDefaults(defineProps<buttonProps>(), {
+  nativeType: "button",
+  //  disabled: true, // 设置默认值
+  // loading: false, // 设置默认值
+});
+defineOptions({
+  name: "SiButton",
+});
+const _ref = ref<HTMLButtonElement>();
+defineExpose({
+  ref: _ref,
+});
 </script>
-<style scoped
->
-@import './style.css';
+<style scoped>
+@import "./style.css";
 </style>

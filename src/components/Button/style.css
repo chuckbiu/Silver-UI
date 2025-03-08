@@ -16,30 +16,30 @@
     --si-button-active-color: var(--si-text-color-primary);
 }
 @each $val in primary,success,warning,info,danger {
-    .si-button--$(val) {
-    --si-button-text-color: var(--si-color-white);
-    --si-button-bg-color: var(--si-color-$(val));
-    --si-button-border-color: var(--si-color-$(val));
-    --si-button-outline-color: var(--si-color-$(val)-light-5);
-    --si-button-active-color: var(--si-color-$(val)-dark-2);
-    --si-button-hover-text-color: var(--si-color-white);
-    --si-button-hover-bg-color: var(--si-color-$(val)-light-3);
-    --si-button-hover-border-color: var(--si-color-$(val)-light-3);
-    --si-button-active-bg-color: var(--si-color-$(val)-dark-2);
-    --si-button-active-border-color: var(--si-color-$(val)-dark-2);
-    --si-button-disabled-text-color: var(--si-color-white);
-    --si-button-disabled-bg-color: var(--si-color-$(val)-light-5);
-    --si-button-disabled-border-color: var(--si-color-$(val)-light-5);
-}
-    .si-button--$(val).is-plain {
-    --si-button-text-color: var(--si-color-$(val));
-    --si-button-bg-color: var(--si-color-$(val)-light-9);
-    --si-button-border-color: var(--si-color-$(val)-light-5);
-    --si-button-hover-text-color: var(--si-color-white);
-    --si-button-hover-bg-color: var(--si-color-$(val));
-    --si-button-hover-border-color: var(--si-color-$(val));
-    --si-button-active-text-color: var(--si-color-white);
-}
+        .si-button--$(val) {
+        --si-button-text-color: var(--si-color-white);
+        --si-button-bg-color: var(--si-color-$(val));
+        --si-button-border-color: var(--si-color-$(val));
+        --si-button-outline-color: var(--si-color-$(val)-light-5);
+        --si-button-active-color: var(--si-color-$(val)-dark-2);
+        --si-button-hover-text-color: var(--si-color-white);
+        --si-button-hover-bg-color: var(--si-color-$(val)-light-3);
+        --si-button-hover-border-color: var(--si-color-$(val)-light-3);
+        --si-button-active-bg-color: var(--si-color-$(val)-dark-2);
+        --si-button-active-border-color: var(--si-color-$(val)-dark-2);
+        --si-button-disabled-text-color: var(--si-color-white);
+        --si-button-disabled-bg-color: var(--si-color-$(val)-light-5);
+        --si-button-disabled-border-color: var(--si-color-$(val)-light-5);
+    }
+        .si-button--$(val).is-plain {
+        --si-button-text-color: var(--si-color-$(val));
+        --si-button-bg-color: var(--si-color-$(val)-light-9);
+        --si-button-border-color: var(--si-color-$(val)-light-5);
+        --si-button-hover-text-color: var(--si-color-white);
+        --si-button-hover-bg-color: var(--si-color-$(val));
+        --si-button-hover-border-color: var(--si-color-$(val));
+        --si-button-active-text-color: var(--si-color-white);
+    }
 }
 .si-button {
     display: inline-flex;
@@ -86,11 +86,14 @@
         background-color: var(--si-button-active-bg-color);
         outline: none;
     }
-    &.is-plain {
-        --si-button-hover-text-color: var(--si-color-primary);
-        --si-button-hover-bg-color: var(--si-fill-color-blank);
-        --si-button-hover-border-color: var(--si-color-primary);
-    }
+    
+        /* &.is-plain {
+            --si-button-hover-text-color: var(--si-color-primary);
+            --si-button-hover-bg-color: var(--si-fill-color-blank);
+            --si-button-hover-border-color: var(--si-color-primary);
+        } */
+    
+  
     /*round*/
     &.is-round {
         border-radius: var(--si-border-radius-round);
@@ -99,6 +102,18 @@
     &.is-circle {
         border-radius: 50%;
         padding: 8px;
+    }
+    /*disabled*/
+    /*
+        接续兄弟组合器
+        --接续兄弟选择器（+）介于两个选择器之间，当第二个元素紧跟在第一个元素之后，并且两个元素都是属于同一个父元素的子元素，则第二个元素将被选中
+        属性选择器 []
+    */
+    /* &.is-disabled {
+
+    } */
+    [class*=si-icon] + span {
+        margin-left: 6px;
     }
 
 }

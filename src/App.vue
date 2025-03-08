@@ -5,34 +5,31 @@ import Collapse from "@/components/Collapse/Collapse.vue";
 import CollapseItem from "@/components/Collapse/CollapseItem.vue";
 import { onMounted, ref} from "vue";
 import type {ButtonInstance} from "@/components/Button/types.ts";
-import Icon from "@/components/Icon/Icon.vue";
-
+import Tooltip from "@/components/Tooltip/Tooltip.vue";
 const buttonRef = ref< ButtonInstance | null>(null)
 const openValue = ref(['1-1'])
-const IconColor = ref('red')
-const IconSize = ref<any>('xl')
+const changeTrigger = ref('hover')
+
+setTimeout(()=>{
+  changeTrigger.value = 'click'
+}, 2000)
 onMounted(()=>{
     if (buttonRef.value) {
       console.log('app mounted', buttonRef.value.ref)
     }
-    // // 当异步处理openValue
-    // setTimeout(()=>{
-    //   openValue.value = ['2-1', '1-1']
-    // }, 2000)
-  
 })
 </script>
 
 <template>
    <!-- Add the style and icon you want using the Array format -->
-   <Button  ref="buttonRef">
+   <Button  ref="buttonRef" disabled>
        default
     </Button>
     <Button  type="primary" disabled>
       primary
     </Button>
-    <Button  type="primary">
-      <Icon icon="fa-solid fa-spinner" spin ></Icon>
+    <Button  type="primary" :loading="true" >
+    test
     </Button>
     <Button  type="success">
       success
@@ -43,7 +40,7 @@ onMounted(()=>{
     <Button  type="warning">
       warning
     </Button>
-    <Button  type="danger" disabled> 
+    <Button  type="danger" :disabled="true"> 
       danger
     </Button>
     <br>
@@ -124,8 +121,15 @@ onMounted(()=>{
       </div>
     </CollapseItem>
   </Collapse>
+
+<Tooltip content="Bottom Center prompts info" :trigger="changeTrigger">
+  <button class="btn">test Tooltip</button>
+</Tooltip>
+
 </template>
 
 <style scoped>
-
+  .btn {
+    width: 100%;
+  }
 </style>

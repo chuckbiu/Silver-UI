@@ -1,4 +1,3 @@
-import type { PropType } from 'vue'
 type type = 'default' | 'primary' | 'success' | 'danger' | 'warning' | 'info' ;
 type size = 'small' | 'large';
 type NativeType = 'button' | 'submit' | 'reset'
