@@ -7,7 +7,9 @@ export interface TooltipProps {
     // modifiers?:  
     // strategy?: string
     // 使用Partial 变成可选参数
-    popperOptions?: Partial<Options>
+    popperOptions?: Partial<Options>,
+    openDelay: number, // 延迟
+    closeDelay: number
 }
 export interface TooltipEmits {
     (e: 'visible-change', value: boolean): void;

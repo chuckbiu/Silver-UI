@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import type { buttonProps } from "./types.ts";
 import { ref } from "vue";
-import Icon from "@/components/Icon/Icon.vue";
+import Icon from "../../components/Icon/Icon.vue";
 
 withDefaults(defineProps<buttonProps>(), {
   nativeType: "button",

@@ -11,7 +11,7 @@ const buttonRef = ref< ButtonInstance | null>(null)
 const openValue = ref(['1-1'])
 const changeTrigger = ref('hover')
 const optionsTooltips: Partial<Options> = reactive({
-  placement: 'bottom-end',
+  placement: 'bottom',
   strategy: 'fixed'
 
 })
@@ -135,6 +135,7 @@ onMounted(()=>{
 
 <style scoped>
   .btn {
-    width: 100%;
+    width: 30%;
+    display: block;
   }
 </style>

@@ -34,6 +34,8 @@ const PNode = ref<HTMLElement | null>(null);
 let propperInstance: null | Instance = null;
 // 弹窗是否展示
 const isOpen = ref(false);
+let openTimes = 1000;
+let closeTimes = 1000;
 const popperOptions = computed(() => {
   return {
     placements: props.placement,
@@ -42,12 +44,20 @@ const popperOptions = computed(() => {
 });
 // hover
 const open = () => {
-  isOpen.value = true;
-  emits("visible-change", true);
+  setTimeout(() => {
+    openTimes++
+    console.log('open times', openTimes);
+    isOpen.value = true;
+    emits("visible-change", true);
+  }, props.openDelay);
 };
 const close = () => {
-  isOpen.value = false;
-  emits("visible-change", false);
+  setTimeout(() => {
+    closeTimes++
+    console.log('close times', closeTimes);
+    isOpen.value = false;
+    emits("visible-change", false);
+  }, props.closeDelay);
 };
 
 // 组件触发点击
@@ -106,6 +116,4 @@ watch(
   }
 );
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

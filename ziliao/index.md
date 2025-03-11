@@ -1,3 +1,21 @@
+### 测试框架Vitest 
+
+Mocha / Jest / Vitest
+
+https://cn.vitest.dev/
+
+测试功能：
+
+​	**断言** 
+
+​		https://www.chaijs.com
+
+组件测试框架：vue test utils / Testing Library
+
+https://v1.test-utils.vuejs.org
+
+
+
 ### Button
 
 需求分析：
@@ -116,4 +134,6 @@ v-on 可接收一个Object作为参数， 对其中每一项都可以作为对�
 <!-- 对象语法 -->
 <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 ```
+
+### Dropdown 组件
 
