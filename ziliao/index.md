@@ -14,7 +14,13 @@ https://cn.vitest.dev/
 
 https://v1.test-utils.vuejs.org
 
+####  Collapse 测试
 
+​	Vnode 以及 Render Function 
+
+​	文档地址：https://cn.vuejs.org/guide/extras/rendering-mechanism
+
+​	
 
 ### Button
 
@@ -137,3 +143,6 @@ v-on 可接收一个Object作为参数， 对其中每一项都可以作为对�
 
 ### Dropdown 组件
 
+### 优化
+
+css

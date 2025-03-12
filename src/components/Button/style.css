@@ -112,6 +112,15 @@
     /* &.is-disabled {
 
     } */
+    &.is-disabled, &.is-disabled:hover, &.is-disabled:focus, 
+    &[disabled], &[disabled]:hover, &[disabled]:focus 
+    {
+      color: var(--si-button-disabled-text-color);
+      cursor: not-allowed;
+      background-image: none;
+      background-color: var(--si-button-disabled-bg-color);
+      border-color: var(--si-button-disabled-border-color);
+    }
     [class*=si-icon] + span {
         margin-left: 6px;
     }

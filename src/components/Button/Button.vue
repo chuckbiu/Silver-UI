@@ -14,7 +14,6 @@
     }"
     :disabled="disabled || loading"
     :type="nativeType"
-    v-bind="$attrs"
   >
     <Icon icon="fa-solid fa-spinner" v-if="loading" spin></Icon>
     <Icon :icon="icon" v-if="icon"></Icon>
@@ -22,6 +21,7 @@
       <slot></slot>
     </span>
   </button>
+
 </template>
 <script setup lang="ts">
 import type { buttonProps } from "./types.ts";

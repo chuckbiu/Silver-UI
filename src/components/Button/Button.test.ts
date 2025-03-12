@@ -1,7 +1,8 @@
 import { describe, test, expect } from "vitest";
 import { mount } from '@vue/test-utils';
 import Button from './Button.vue';
-
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import  Icon  from "../Icon/Icon.vue"
 describe('Button.vue', () => {
     test('basic button', () => {
         const wrapper = mount(Button, {
@@ -34,5 +35,41 @@ describe('Button.vue', () => {
         expect(wrapper.attributes('disabled')).toBeDefined()
         // 原生节点
         expect(wrapper.find('button').element.disabled).toBeDefined()
+    })
+    test('icon', () => {
+        const wrapper = mount(Button, {
+            props: {
+                icon: 'arrow-up'
+            },
+            slots: {
+                default: 'icon'
+            },
+            global: {
+                stubs: ['FontAwesomeIcon'] // 该配置可以忽略第三方库
+            }
+        })
+        console.log(wrapper.html())
+        const iconElement = wrapper.findComponent(FontAwesomeIcon)
+        expect(iconElement.exists()).toBeTruthy()
+        expect(iconElement.attributes('icon')).toBe('arrow-up')
+    })
+    test('loading', () => {
+        const wrapper = mount(Button, {
+            props: {
+                loading: true
+            },
+            slots: {
+                default: 'loading'
+            },
+            global: {
+                stubs: ['Icon'] // 该配置可以忽略第三方库
+            }
+        })
+        console.log(wrapper.html())
+        const iconElement = wrapper.findComponent(Icon)
+        expect(iconElement.exists()).toBeTruthy()
+        expect(iconElement.attributes('icon')).toBe('fa-solid fa-spinner')
+        expect(wrapper.attributes('disabled')).toBeDefined() // 是否存在
+        
     })
 })

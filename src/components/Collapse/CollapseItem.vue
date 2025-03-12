@@ -2,7 +2,7 @@
 import { inject, computed } from "vue";
 import type { CollapseItemProps } from "./types";
 import { collapseInjectionKey } from "./types";
-import Icon from "@/components/Icon/Icon.vue";
+import Icon from "../../components/Icon/Icon.vue";
 defineOptions({
   name: "siCollapseItem",
 });
@@ -19,16 +19,13 @@ const handleClick = () => {
 function onBeforeEnter(el: HTMLElement) {
     el.style.height = '0px';
     el.style.overflow = 'hidden';
-
 }
 
 function onEnter(el: HTMLElement) {
     el.style.height = el.scrollHeight + 'px';
-
 }
 function onAfterEnter(el: HTMLElement) {
     el.style.height = '';
-
 }
 // 离开动画的初始状态
 function onAfterLeave(el: HTMLElement) {
@@ -37,13 +34,10 @@ function onAfterLeave(el: HTMLElement) {
 }
 function onBeforeLeave(el: HTMLElement) {
     el.style.height = el.scrollHeight + 'px';
-
     el.style.overflow = 'hidden';
 }   
 function onLeave(el: HTMLElement) {
     el.style.height = '0px';
-
-
 }   
 </script>
 
@@ -66,11 +60,11 @@ function onLeave(el: HTMLElement) {
     </div>
     <Transition name="slide" 
         @before-enter="onBeforeEnter"
-       @enter="onEnter"
-  @after-enter="onAfterEnter"
-  @before-leave="onBeforeLeave"
-  @leave="onLeave"
-  @after-leave="onAfterLeave"
+        @enter="onEnter"
+        @after-enter="onAfterEnter"
+        @before-leave="onBeforeLeave"
+        @leave="onLeave"
+        @after-leave="onAfterLeave"
   
     >
     <div class="si-collapse-item__wrapper" v-show="isActived">

@@ -41,8 +41,6 @@
 </script>
 <template>
     <div class="si-collapse">
-            <slot></slot>
-        
-
+        <slot></slot>
     </div>
 </template>
