@@ -10,7 +10,7 @@ export interface  buttonProps {
   plain?: boolean, // 是否朴素按钮
   round?: boolean, // 是否圆角按钮
   circle?: boolean, // 是否圆形按钮
-  nativeType?: NativeType
+  nativeType?: NativeType // button 的类型
   loading?: boolean, // 是否加载中状态
   icon?: string, // 图标类名
 }

@@ -1,3 +1,7 @@
+### 架构 monorepo
+
+
+
 ### 测试框架Vitest 
 
 Mocha / Jest / Vitest
@@ -85,7 +89,13 @@ defineExpose({
 
 /kəˈlæps/
 
+#### 重难点：
 
+​	v-model 
+
+​	defineEmits
+
+​	provide/reject 通信
 
 ### Icon
 
@@ -96,6 +106,33 @@ fortawesome 第三方库
 ### Tooltip 文字提示 （通用组件）
 
 Dropdown, select 组件都可复用
+
+#### 开发计划：
+
+最基本实现 完成
+
+支持 click / hover 触发方式 
+
+支持 clickoutside的 时候隐藏 
+
+支持 手动触发 
+
+```vue
+<script>
+    // 使用 <script setup> 的组件是默认关闭的——即通过模板引用或者 $parent 链获取到的组件的公开实例，不会暴露任何在 <script setup> 中声明的绑定。
+	// 可以通过 defineExpose 编译器宏来显式指定在 <script setup> 组件中要暴露出去的属性
+    defineExpose({
+    })
+</script>
+```
+
+支持 popper 参数 
+
+动画 
+
+支持延迟显示 
+
+样式 
 
 #### 需求分析：
 
@@ -141,7 +178,85 @@ v-on 可接收一个Object作为参数， 对其中每一项都可以作为对�
 <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 ```
 
-### Dropdown 组件
+### Dropdown 下拉菜单
+
+需求分析
+
+![](assets/Snipaste_2025-03-15_19-58-20.png)
+
+#### 开发计划：
+
+1 渲染页面：
+
+2 支持 h 自定义节点渲染：
+
+3 修改单文件组件变成tsx组件
+
+​	渲染 slots 
+
+​		vue 使用：
+
+​			默认：<slot/>
+
+​			具名：<slot name="footer" />
+
+​		jsx 使用：
+
+​			默认：{ slots.default() }
+
+​			具名：{ slots.footer() }
+
+​	传递 slots
+
+​		 vue:
+
+​			<MyComponent> Hello </MyComponent>
+
+- ```vue
+  <MyComponent>
+  	<template #footer> footer </template>
+  </MyComponent>
+  ```
+
+  ​	  jsx:
+
+  ​		<MyComponent> {() => 'hello'} </MyComponent>
+
+  ​		<MyComponents> {{
+
+  ​				default: () => 'default slot',
+
+  ​				footer: () => <div> foooter </div>
+
+  ​		}}
+
+  ​		</MyComponent>
+
+  ​	expose 
+
+  ​		vue - defineExpose
+
+  ​		jsx - expose
+
+#### 重难点：
+
+##### 渲染函数 & JSX（h 函数语法糖）
+
+虚拟DOM
+
+虚拟 DOM (Virtual DOM，简称 VDOM) 是一种编程概念，意为将目标所需的 UI 通过数据结构“虚拟”地表示出来，保存在内存中，然后将真实的 DOM 与之保持同步。这个概念是由 [React](https://reactjs.org/) 率先开拓，随后被许多不同的框架采用，当然也包括 Vue。
+
+> 挂载 -》 更新（比对， 协调） 
+
+渲染管线
+
+Vue组件 挂载时会发生下面几件事：
+
+1.编译 2.挂载 3.更新
+
+### Message 组件需求分析
+
+
 
 ### 优化
 

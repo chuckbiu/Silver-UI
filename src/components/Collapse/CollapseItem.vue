@@ -67,6 +67,7 @@ function onLeave(el: HTMLElement) {
         @after-leave="onAfterLeave"
   
     >
+    <!-- bem 101 命名法 -->
     <div class="si-collapse-item__wrapper" v-show="isActived">
         <div
         class="si-collapse-item__content"

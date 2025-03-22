@@ -3,7 +3,7 @@
     class="si-button"
     ref="_ref"
     :class="{
-      [`si-button--${type}`]: type,
+      [`si-button--${type}`]: true,
       [`si-button--${size}`]: size,
       'is-type': type,
       'is-size': size,
@@ -42,5 +42,5 @@ defineExpose({
 });
 </script>
 <style scoped>
-@import "./style.css";
+/* @import "./style.css"; */
 </style>

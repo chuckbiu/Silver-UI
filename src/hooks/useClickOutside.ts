@@ -4,6 +4,7 @@ const useClickOutside = (elementRef: Ref<undefined | HTMLElement>, callback: (e:
 
     function handler(e: MouseEvent) {
         if (elementRef.value && e.target){
+            // 包含 会自动寻找
            if(!elementRef.value.contains(e.target as HTMLElement)){
                 callback(e)
            }            

@@ -10,7 +10,6 @@
         // 控制台发生警告
         console.warn('[siUI warn]: Collapse is in accordion mode, but multiple activeNames are detected.');
     }
-
     // 面板标题点击事件
     const handleHeaderClick = (name: NameType) => {
         if (props.accordion){
