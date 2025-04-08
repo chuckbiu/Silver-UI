@@ -26,6 +26,6 @@ export interface FontAwesomeIconProps {
   beatFade?: boolean
   spinPulse?: boolean
   spinReverse?: boolean
-  type?: 'primary' | 'success' | 'danger' | 'warning' | 'info' 
+  type?: 'primary' | 'success' | 'danger' | 'warning' | 'info'
   color?: string
 }

@@ -1,19 +1,19 @@
 export interface TooltipProps {
-  content?: string; // 内容
-  placement: Placement; // 偏移
-  Strategy?: Strategy; // 位置
-  trigger?: 'hover' | 'click'; // 触发方式
-  manual?: boolean; // 是否手动触发
-  openDelay?: number;
-  closeDelay?: number;
+  content?: string // 内容
+  placement: Placement // 偏移
+  Strategy?: Strategy // 位置
+  trigger?: 'hover' | 'click' // 触发方式
+  manual?: boolean // 是否手动触发
+  openDelay?: number
+  closeDelay?: number
 }
 export interface TooltipEmits {
   (e: 'visibleChange', val: boolean): void // 点击事件
 }
 // 暴露出具有两个实例方法的实例
 export interface TooltipInstace {
-  show: () => void;
-  hide: () => void;
+  show: () => void
+  hide: () => void
 }
 
 type Placement =
@@ -31,5 +31,5 @@ type Placement =
   | 'right-end'
   | 'left'
   | 'left-start'
-  | 'left-end';
-type Strategy = 'absolute' | 'fixed';
+  | 'left-end'
+type Strategy = 'absolute' | 'fixed'

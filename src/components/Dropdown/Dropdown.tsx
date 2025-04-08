@@ -1,26 +1,26 @@
-import { computed, defineComponent, Fragment } from "vue";
-import { ref, type PropType } from "vue";
-import type { Placement, Options } from "@popperjs/core";
-import type { MenuOption } from "./types";
-import Tooltip from "../Tooltip/Tooltip.vue";
-import type { TooltipInstance } from "@/components/Tooltip/type.ts";
+import { computed, defineComponent, Fragment, ref } from 'vue'
+import type { PropType } from 'vue'
+import type { Options, Placement } from '@popperjs/core'
+import Tooltip from '../Tooltip/Tooltip.vue'
+import type { MenuOption } from './types'
+import type { TooltipInstance } from '@/components/Tooltip/type.ts'
 
 export default defineComponent({
-  name: "SiDropdown", // 名称
+  name: 'SiDropdown', // 名称
   // 传值
   props: {
     placements: {
       // as PropType 更加准确定义类型
       type: String as PropType<Placement>,
-      default: "bottom",
+      default: 'bottom',
     },
     trigger: {
-      type: String as PropType<"hover" | "click">,
-      default: "click",
+      type: String as PropType<'hover' | 'click'>,
+      default: 'click',
     },
     transisition: {
       type: String,
-      default: "fade",
+      default: 'fade',
     },
     openDelay: {
       type: Number,
@@ -44,44 +44,46 @@ export default defineComponent({
     },
   },
   // 定义事件
-  emits: ["visible-change", "select"],
+  emits: ['visible-change', 'select'],
   setup(props, { slots, emit, expose }) {
-    const tooltipRef = ref<TooltipInstance | null>(null);
+    const tooltipRef = ref<TooltipInstance | null>(null)
 
     const itemClick = (e: MenuOption) => {
       // 假如是否禁用
       if (e.disabled) {
-        return;
+        return
       }
-      emit("select", e);
+      emit('select', e)
       if (props.hideAfterClick) {
-        tooltipRef.value?.hide();
+        tooltipRef.value?.hide()
       }
-    };
+    }
 
     // 作为中间层传递作用
     const visibleChange = (e: boolean) => {
-      emit("visible-change", e);
-    };
+      emit('visible-change', e)
+    }
     expose({
       show: () => tooltipRef.value?.show(),
       close: () => tooltipRef.value?.hide(),
-    });
+    })
     const options = computed(() => {
       return props.menuOptions.map((item) => {
         return (
           <Fragment key={item.key}>
-            {item.divided ? (
-              <li role="separator" class="divided-placeholder"></li>
-            ) : (
-              ""
-            )}
+            {item.divided
+              ? (
+                  <li role="separator" class="divided-placeholder"></li>
+                )
+              : (
+                  ''
+                )}
             <li
               // 动态展示样式
               class={{
-                "si-dropdown__item": true,
-                "is-diabled": item.disabled,
-                "is-divided": item.divided,
+                'si-dropdown__item': true,
+                'is-diabled': item.disabled,
+                'is-divided': item.divided,
               }}
               id={`dropdown-item-${item.key}`}
               onClick={() => itemClick(item)}
@@ -89,9 +91,9 @@ export default defineComponent({
               {item.label}
             </li>
           </Fragment>
-        );
-      });
-    });
+        )
+      })
+    })
     return () => (
       <div class="si-dropdown">
         <Tooltip
@@ -109,6 +111,6 @@ export default defineComponent({
           }}
         </Tooltip>
       </div>
-    );
+    )
   },
-});
+})

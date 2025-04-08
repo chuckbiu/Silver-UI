@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Input from './Input.vue'
 
-describe('Input', () => {
+describe('input', () => {
   it('基本展示', () => {
     /**
      *  针对动态class 查看 classes 是否正确
@@ -13,16 +13,16 @@ describe('Input', () => {
       props: {
         size: 'small',
         tyep: 'text',
-        modelValue: ''
+        modelValue: '',
       },
       slots: {
         prepend: 'prepend',
-        prefix: 'prefix'
-      }
+        prefix: 'prefix',
+      },
     })
     console.log(wrapper.html())
     // classes
-    expect(wrapper.classes()).toContain('si-input--small');
+    expect(wrapper.classes()).toContain('si-input--small')
     expect(wrapper.classes()).toContain('is-prepend')
     // should render input
     expect(wrapper.find('input').exists()).toBeTruthy()
@@ -34,62 +34,60 @@ describe('Input', () => {
     const wrapper2 = mount(Input, {
       props: {
         type: 'textarea',
-        modelValue: ''
+        modelValue: '',
 
-      }
+      },
     })
     console.log(wrapper2.html())
 
     // expect(wrapper.classes()).toContain('si-textarea__wrappper')
-      expect(wrapper2.find('.si-textarea__wrappper').exists()).toBeTruthy()
-
+    expect(wrapper2.find('.si-textarea__wrappper').exists()).toBeTruthy()
   })
   it('支持 v-model', async () => {
-      const wrapper = mount(Input, {
-        props: {
-          modelValue: 'test',
-          'onUpdate:modelValue': (e: string) => wrapper.setProps({
-            modelValue: e
-          })
-        }
-      })
-      // 初始值
-      const input = wrapper.get('input');
-      expect(input.element.value).toBe('test')
-      // 更新值
-      await input.setValue('update')
-      expect(wrapper.props('modelValue')).toBe('update')
-      expect(input.element.value).toBe('update')
-      /**
-       * 测试事件
-       */
-      console.log('the events', wrapper.emitted())
-      expect(wrapper.emitted()).toHaveProperty('input')
-      expect(wrapper.emitted()).toHaveProperty('change')
-      // [['update'], ...]
-      const inputEvent = wrapper.emitted('input')
-      const changeEvent = wrapper.emitted('change')
-      expect(inputEvent![0]).toEqual(['update'])
-      expect(changeEvent![0]).toEqual(['update'])
+    const wrapper = mount(Input, {
+      props: {
+        'modelValue': 'test',
+        'onUpdate:modelValue': (e: string) => wrapper.setProps({
+          modelValue: e,
+        }),
+      },
+    })
+    // 初始值
+    const input = wrapper.get('input')
+    expect(input.element.value).toBe('test')
+    // 更新值
+    await input.setValue('update')
+    expect(wrapper.props('modelValue')).toBe('update')
+    expect(input.element.value).toBe('update')
+    /**
+     * 测试事件
+     */
+    console.log('the events', wrapper.emitted())
+    expect(wrapper.emitted()).toHaveProperty('input')
+    expect(wrapper.emitted()).toHaveProperty('change')
+    // [['update'], ...]
+    const inputEvent = wrapper.emitted('input')
+    const changeEvent = wrapper.emitted('change')
+    expect(inputEvent![0]).toEqual(['update'])
+    expect(changeEvent![0]).toEqual(['update'])
 
-      // v-model 异步更新
-      await wrapper.setProps({
-        modelValue: 'prop update'
-      })
-      expect(input.element.value).toBe('prop update')
-
+    // v-model 异步更新
+    await wrapper.setProps({
+      modelValue: 'prop update',
+    })
+    expect(input.element.value).toBe('prop update')
   })
   //  it.only
   it('支持点击清空字符串', async () => {
-    const wrapper = mount(Input,  {
+    const wrapper = mount(Input, {
       props: {
         modelValue: 'test',
         clearable: true,
-        type: 'text'
+        type: 'text',
       },
       global: {
-        stubs: ['Icon']
-      }
+        stubs: ['Icon'],
+      },
     })
     // 不出现对于的Icon区域
     expect(wrapper.find('.si-input__clear').exists()).toBeFalsy()
@@ -115,7 +113,6 @@ describe('Input', () => {
 
     await input.trigger('blur')
     expect(wrapper.emitted()).toHaveProperty('blur')
-
   })
   // it.only('支持密码是否显示', async () => {
   //   const wrapper = mount(Input,  {
@@ -144,4 +141,3 @@ describe('Input', () => {
 
   // })
 })
-

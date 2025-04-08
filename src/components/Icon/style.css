@@ -1,17 +1,16 @@
 .si-icon {
-    --si-icon-color: inherit;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    fill: currentColor;
-    color: var(--si-icon-color);
-    font-size: inherit;
+  --si-icon-color: inherit;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--si-icon-color);
+  font-size: inherit;
+}
+
+@each $val in primary, info, success, warning, danger {
+  .si-icon--$(val) {
+    --si-icon-color: var(--si-color-$(val));
   }
-  
-  @each $val in primary,info,success,warning,danger {
-    .si-icon--$(val) {
-      --si-icon-color: var(--si-color-$(val));
-    }
-  }
-  
+}

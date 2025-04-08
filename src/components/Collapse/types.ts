@@ -1,26 +1,26 @@
-import type { Ref, InjectionKey } from 'vue';
+import type { InjectionKey, Ref } from 'vue'
 
-export type NameType = string | number;
+export type NameType = string | number
 // 父组件属性
 export interface CollapsedefineProps {
-    modelValue: NameType[];
-    // 是否打开手风琴模式
-    accordion?: boolean;
+  modelValue: NameType[]
+  // 是否打开手风琴模式
+  accordion?: boolean
 }
 export interface CollapsedefineEmits {
-    (e: 'update:modelValue', value: NameType[]): void;
-    (e: 'change', value: NameType[]): void;
+  (e: 'update:modelValue', value: NameType[]): void
+  (e: 'change', value: NameType[]): void
 }
 // 子组件属性
 export interface CollapseItemProps {
-    name: NameType;
-    disabled?: boolean;
-    title?: string;
+  name: NameType
+  disabled?: boolean
+  title?: string
 }
 // 创建一个context
 export interface CollapseContext {
-    activeNames: Ref<NameType[]>;
-    handleHeaderClick: (name: NameType) => void;
+  activeNames: Ref<NameType[]>
+  handleHeaderClick: (name: NameType) => void
 }
 // 创建key
-export const collapseInjectionKey = Symbol() as InjectionKey<CollapseContext>;
+export const collapseInjectionKey = Symbol() as InjectionKey<CollapseContext>

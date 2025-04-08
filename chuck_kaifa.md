@@ -15,4 +15,3 @@
 | imgHeight | 卡片高度        |
 | imgWidth  | 卡片宽度        |
 | footer    | 底部内容-自定义 |
-

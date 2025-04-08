@@ -1,61 +1,61 @@
 .si-collapse {
-    --si-collapse-border-color: var(--si-border-color-light);
-    --si-collapse-header-height: 48px;
-    --si-collapse-header-bg-color: var(--si-fill-color-blank);
-    --si-collapse-header-text-color: var(--si-text-color-primary);
-    --si-collapse-header-font-size: 13px;
-    --si-collapse-content-bg-color: var(--si-fill-color-blank);
-    --si-collapse-content-font-size: 13px;
-    --si-collapse-content-text-color: var(--si-text-color-primary);
-    --si-collapse-disabled-text-color: var(--si-disabled-text-color);
-    --si-collapse-disabled-border-color: var(--si-border-color-lighter);
-    border-top: 1px solid var(--si-collapse-border-color);
-    border-bottom: 1px solid var(--si-collapse-border-color);
+  --si-collapse-border-color: var(--si-border-color-light);
+  --si-collapse-header-height: 48px;
+  --si-collapse-header-bg-color: var(--si-fill-color-blank);
+  --si-collapse-header-text-color: var(--si-text-color-primary);
+  --si-collapse-header-font-size: 13px;
+  --si-collapse-content-bg-color: var(--si-fill-color-blank);
+  --si-collapse-content-font-size: 13px;
+  --si-collapse-content-text-color: var(--si-text-color-primary);
+  --si-collapse-disabled-text-color: var(--si-disabled-text-color);
+  --si-collapse-disabled-border-color: var(--si-border-color-lighter);
+  border-top: 1px solid var(--si-collapse-border-color);
+  border-bottom: 1px solid var(--si-collapse-border-color);
+}
+.si-collapse-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--si-collapse-header-height);
+  line-height: var(--si-collapse-header-height);
+  background-color: var(--si-collapse-header-bg-color);
+  color: var(--si-collapse-header-text-color);
+  cursor: pointer;
+  font-size: var(--si-collapse-header-font-size);
+  font-weight: 500;
+  transition: border-bottom-color var(--si-transition-duration);
+  outline: none;
+  border-bottom: 1px solid var(--si-collapse-border-color);
+  &.is-disabled {
+    color: var(--si-collapse-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
   }
-  .si-collapse-item__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: var(--si-collapse-header-height);
-    line-height: var(--si-collapse-header-height);
-    background-color: var(--si-collapse-header-bg-color);
-    color: var(--si-collapse-header-text-color);
-    cursor: pointer;
-    font-size: var(--si-collapse-header-font-size);
-    font-weight: 500;
-    transition: border-bottom-color var(--si-transition-duration);
-    outline: none;
-    border-bottom: 1px solid var(--si-collapse-border-color);
-    &.is-disabled {
-      color: var(--si-collapse-disabled-text-color);
-      cursor: not-allowed;
-      background-image: none;
-    }
-    &.is-active {
-      border-bottom-color: transparent;
-      .header-angle {
-        transform: rotate(90deg);
-      }
-    }
+  &.is-active {
+    border-bottom-color: transparent;
     .header-angle {
-      transition: transform var(--si-transition-duration);
+      transform: rotate(90deg);
     }
   }
-  .si-collapse-item__content {
-    /* will-change 为 web 开发者提供了一种告知浏览器该元素会有哪些变化的方法 */
-    will-change: height;
-    background-color: var(--si-collapse-content-bg-color);
-    overflow: hidden;
-    box-sizing: border-box;
-    font-size: var(--si-collapse-content-font-size);
-    color: var(--si-collapse-content-text-color);
-    border-bottom: 1px solid var(--si-collapse-border-color);
-    padding-bottom: 25px;        
+  .header-angle {
+    transition: transform var(--si-transition-duration);
   }
+}
+.si-collapse-item__content {
+  /* will-change 为 web 开发者提供了一种告知浏览器该元素会有哪些变化的方法 */
+  will-change: height;
+  background-color: var(--si-collapse-content-bg-color);
+  overflow: hidden;
+  box-sizing: border-box;
+  font-size: var(--si-collapse-content-font-size);
+  color: var(--si-collapse-content-text-color);
+  border-bottom: 1px solid var(--si-collapse-border-color);
+  padding-bottom: 25px;
+}
 
-  .slide-enter-active,
+.slide-enter-active,
 .slide-leave-active {
-  transition: height .3s ease-in-out;
+  transition: height 0.3s ease-in-out;
 }
 
 .slide-enter-from,
