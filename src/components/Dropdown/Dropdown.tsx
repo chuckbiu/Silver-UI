@@ -32,7 +32,7 @@ export default defineComponent({
     },
     popperOptions: {
       type: Object as PropType<Options>,
-      required: true,
+      required: false,
     },
     menuOptions: {
       type: Array as PropType<MenuOption[]>,
@@ -82,7 +82,7 @@ export default defineComponent({
               // 动态展示样式
               class={{
                 'si-dropdown__item': true,
-                'is-diabled': item.disabled,
+                'is-disabled': item.disabled,
                 'is-divided': item.divided,
               }}
               id={`dropdown-item-${item.key}`}
@@ -107,7 +107,7 @@ export default defineComponent({
         >
           {{
             default: () => slots.default && slots.default(),
-            content: () => <ul class="si-dropdown_menu">{options.value}</ul>,
+            content: () => <ul class="si-dropdown__menu">{options.value}</ul>,
           }}
         </Tooltip>
       </div>

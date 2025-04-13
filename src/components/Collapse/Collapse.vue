@@ -3,6 +3,9 @@ import { provide, ref, watch } from 'vue'
 import type { CollapsedefineEmits, CollapsedefineProps, NameType } from './types'
 import { collapseInjectionKey } from './types'
 
+defineOptions({
+  name: 'si-collapse',
+})
 const props = defineProps<CollapsedefineProps>()
 const emit = defineEmits<CollapsedefineEmits>()
 // 当前激活的面板

@@ -43,16 +43,16 @@ outline: deep
 
 ### 属性
 
-| 属性名     | 说明             | 类型    | 可选值                               | 默认值 |
-| ---------- | ---------------- | ------- | ------------------------------------ | ------ |
-| type       | 按钮类型         | string  | primary / success / warning / danger | —      |
-| size       | 按钮尺寸         | string  | large / small                        | —      |
-| plain      | 是否为朴素按钮   | boolean | —                                    | false  |
-| round      | 是否为圆角按钮   | boolean | —                                    | false  |
-| disabled   | 是否禁用         | boolean | —                                    | false  |
-| loading    | 是否加载中状态   | boolean | —                                    | false  |
-| autofocus  | 是否自动获取焦点 | boolean | —                                    | false  |
-| nativeType | 原生 type 属性   | string  | button / submit / reset              | button |
+| 属性名     | 说明             | 类型      | 可选值                               | 默认值 |
+| ---------- | ---------------- | --------- | ------------------------------------ | ------ |
+| type       | 按钮类型         | `string`  | primary / success / warning / danger | —      |
+| size       | 按钮尺寸         | `string`  | large / small                        | —      |
+| plain      | 是否为朴素按钮   | `boolean` | —                                    | false  |
+| round      | 是否为圆角按钮   | `boolean` | —                                    | false  |
+| disabled   | 是否禁用         | `boolean` | —                                    | false  |
+| loading    | 是否加载中状态   | `boolean` | —                                    | false  |
+| autofocus  | 是否自动获取焦点 | `boolean` | —                                    | false  |
+| nativeType | 原生 type 属性   | `string`  | button / submit / reset              | button |
 
 ### 插槽
 
@@ -65,11 +65,3 @@ outline: deep
 | 事件名 | 说明           | 参数                |
 | ------ | -------------- | ------------------- |
 | click  | 点击按钮时触发 | (event: MouseEvent) |
-
-<style>
-.button-row {
-  margin-bottom: 20px;
-  display: flex;
-  gap: 12px;
-}
-</style>

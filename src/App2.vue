@@ -1,17 +1,12 @@
 <script setup lang="ts">
-import Button from './components/Button/Button.vue'
-import VNode from './VNode.tsx'
-
-defineExpose({
-  name: 'button',
-})
+import Tooltip from './twocomponents/Tooltip/Tooltip.vue'
+import SiButton from '@/components/Button/Button.vue'
 </script>
 
 <template>
-  <div>
-    <Button>button</Button>
-    <div>
-      <VNode msg="button" />
-    </div>
+  <div style="text-align: center;">
+    <Tooltip placement="bottom" content="Btom">
+      <SiButton>Default</SiButton>
+    </Tooltip>
   </div>
 </template>

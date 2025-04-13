@@ -16,9 +16,9 @@ Silver UI 提供了一套常用的图标集合。
 
 ### 属性
 
-| 属性名 | 说明     | 类型   | 可选值                                 | 默认值 |
-| ------ | -------- | ------ | -------------------------------------- | ------ |
-| type   | Icon类型 | string | primary / success / warning / danger   | —      |
-| size   | 按钮尺寸 | string | 2xs / xs / sm / lg/ xl/ 2xl / 1x / ... | —      |
-| color  | 颜色     | string | —                                      | —      |
-| icon   | 图标名   | string | —                                      | —      |
+| 属性名 | 说明     | 类型     | 可选值                                 | 默认值 |
+| ------ | -------- | -------- | -------------------------------------- | ------ |
+| type   | Icon类型 | `string` | primary / success / warning / danger   | —      |
+| size   | 按钮尺寸 | `string` | 2xs / xs / sm / lg/ xl/ 2xl / 1x / ... | —      |
+| color  | 颜色     | `string` | —                                      | —      |
+| icon   | 图标名   | `string` | —                                      | —      |

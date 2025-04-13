@@ -1,19 +1,22 @@
 <script lang="ts" setup>
-import { onUnmounted, reactive, ref, watch } from 'vue'
+import { computed, onUnmounted, reactive, ref, watch } from 'vue'
 import { createPopper } from '@popperjs/core'
 // 导出 实例类型
 import type { Instance } from '@popperjs/core'
-import _ from 'lodash'
+import { debounce } from 'lodash-es'
 import useClickoutside from './useClickoutside'
 import type { TooltipEmits, TooltipInstace, TooltipProps } from './types'
 
 defineOptions({
-  name: 'tooltip',
+  name: 'si-tooltip',
 })
 
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
   trigger: 'hover',
+  openDelay: 200,
+  closeDelay: 200,
+  transtion: 'fade',
 })
 const emit = defineEmits<TooltipEmits>()
 const openDelay = ref(0)
@@ -33,13 +36,28 @@ let propperInstance: Instance | null = null
 const Tooltipvisible = ref(false)
 // 事件注册 Record<string, any>  限制对象里的 键值
 let triggerEventListener: Record<string, any> = reactive({})
-
 let tooltipEventListener: Record<string, any> = reactive({})
+// popper 参数
+const popperOptions = computed(() => {
+  return {
+    placements: props.placement,
+    ...props.popperOptions,
+    modifiers: [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 10],
+        },
+      },
+    ],
+  }
+})
+
 // 当鼠标进入时触发
 function open() {
   openDelay.value++
   console.log('open', openDelay.value)
-  Tooltipvisible.value = !Tooltipvisible.value
+  Tooltipvisible.value = true
   // 派发出去对应事件;
   emit('visibleChange', true)
 }
@@ -48,13 +66,13 @@ function open() {
 function close() {
   closeDelay.value++
   console.log('close', closeDelay.value)
-  Tooltipvisible.value = !Tooltipvisible.value
+  Tooltipvisible.value = false
   // 派发出去对应事件
   emit('visibleChange', false)
 }
 
-const openDebounce = _.debounce(open, props.openDelay)
-const closeDebounce = _.debounce(close, props.closeDelay)
+const openDebounce = debounce(open, props.openDelay)
+const closeDebounce = debounce(close, props.closeDelay)
 /**
  * 因为当你多次hover的时候，他会执行，因此我们希望hover目标盒子时，删除未调用的函数
  */
@@ -63,6 +81,7 @@ function openFinal() {
   openDebounce()
 }
 function closeFinal() {
+  console.log(123)
   openDebounce.cancel()
   closeDebounce()
 }
@@ -93,8 +112,17 @@ function attachEvents() {
   } else if (props.trigger === 'hover') {
     // mouseover
     triggerEventListener.mouseenter = openFinal
-    tooltipEventListener.mouseleave = closeFinal
-  }
+    triggerEventListener.mouseleave = (e: MouseEvent) => {
+      // 如果鼠标进入了 Popper，就不关闭
+      if (!TooltipPropperRef.value?.contains(e.relatedTarget as Node)) {
+        closeFinal();
+      }
+    };
+
+    // Popper 区域事件
+    tooltipEventListener.mouseenter = openFinal; // 鼠标进入 Popper 时保持显示
+    tooltipEventListener.mouseleave = closeFinal; // 鼠标离开 Popper 时才关闭
+      }
 }
 if (!props.manual) {
   // 首次渲染
@@ -122,9 +150,7 @@ watch(
         propperInstance = createPopper(
           TooltipTriggerRef.value,
           TooltipPropperRef.value,
-          {
-            placement: props.placement,
-          },
+          popperOptions.value,
         )
       } else {
         // 隐藏得时候 需要实例销毁
@@ -163,7 +189,7 @@ defineExpose<TooltipInstace>({
 </script>
 
 <template>
-  <div ref="TooltipRef" class="si-tooltip" v-on="tooltipEventListener">
+  <div ref="TooltipRef" v-on="tooltipEventListener" class="si-tooltip">
     <div
       ref="TooltipTriggerRef"
       class="si-tooltip__trigger"
@@ -172,15 +198,18 @@ defineExpose<TooltipInstace>({
       <!-- 外部 -->
       <slot />
     </div>
-    <div
-      v-if="Tooltipvisible"
-      ref="TooltipPropperRef"
-      class="si-tooltip__popper"
-    >
-      <!-- 内容自定义 -->
-      <slot name="content">
-        {{ content }}
-      </slot>
-    </div>
+    <Transition :name="transtion">
+      <div
+        v-if="Tooltipvisible"
+        ref="TooltipPropperRef"
+        class="si-tooltip__popper"
+      >
+        <!-- 内容自定义 -->
+        <slot name="content">
+          {{ content }}
+        </slot>
+        <div id="arrow" data-popper-arrow />
+      </div>
+    </Transition>
   </div>
 </template>

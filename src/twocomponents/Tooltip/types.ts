@@ -1,3 +1,5 @@
+import type { Options } from '@popperjs/core'
+
 export interface TooltipProps {
   content?: string // 内容
   placement: Placement // 偏移
@@ -6,6 +8,8 @@ export interface TooltipProps {
   manual?: boolean // 是否手动触发
   openDelay?: number
   closeDelay?: number
+  popperOptions?: Partial<Options> // popper 参数
+  transtion?: string // 动画
 }
 export interface TooltipEmits {
   (e: 'visibleChange', val: boolean): void // 点击事件

@@ -1,23 +1,39 @@
-import type { Options, Placement } from '@popperjs/core'
+import type { Options } from '@popperjs/core'
 
 export interface TooltipProps {
-  trigger?: 'hover' | 'click'
-  placement?: Placement
-  content?: string
-  // modifiers?:
-  // strategy?: string
-  // 使用Partial 变成可选参数
-  popperOptions?: Partial<Options>
-  openDelay?: number // 打开延迟
-  closeDelay?: number // 关闭延迟
-  manual?: boolean // 是否手动关闭 也就是 自身 两种方式失效
+  content?: string // 内容
+  placement?: Placement // 偏移
+  Strategy?: Strategy // 位置
+  trigger?: 'hover' | 'click' // 触发方式
+  manual?: boolean // 是否手动触发
+  openDelay?: number
+  closeDelay?: number
+  popperOptions?: Partial<Options> // popper 参数
+  transtion?: string // 动画
 }
 export interface TooltipEmits {
-  (e: 'visible-change', value: boolean): void
-  (e: 'clickoutside-change', value: boolean): void
-
+  (e: 'visibleChange', val: boolean): void // 点击事件
 }
+// 暴露出具有两个实例方法的实例
 export interface TooltipInstance {
   show: () => void
   hide: () => void
 }
+
+type Placement =
+  | 'auto'
+  | 'auto-start'
+  | 'auto-end'
+  | 'top'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'right'
+  | 'right-start'
+  | 'right-end'
+  | 'left'
+  | 'left-start'
+  | 'left-end'
+type Strategy = 'absolute' | 'fixed'

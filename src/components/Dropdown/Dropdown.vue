@@ -14,7 +14,7 @@ import RenderVode from '@/hooks/RenderVnode'
 import type { TooltipInstance } from '@/components/Tooltip/type.ts'
 
 defineOptions({
-  name: 'dropdown',
+  name: 'si-dropdown',
 })
 
 // props
@@ -68,7 +68,7 @@ defineExpose<DropdownInstance>({
       <slot />
       <!-- 循环列表结构 -->
       <template #content>
-        <ul class="si-dropdown_menu">
+        <ul class="si-dropdown__menu">
           <!-- template 可以生成空节点 -->
           <template v-for="item in props.menuOption" :key="item.key">
             <li

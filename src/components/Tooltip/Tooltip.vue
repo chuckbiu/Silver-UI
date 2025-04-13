@@ -1,32 +1,46 @@
 <script lang="ts" setup>
-import { debounce } from 'lodash-es'
-import { createPopper } from '@popperjs/core'
 import { computed, onUnmounted, reactive, ref, watch } from 'vue'
+import { createPopper } from '@popperjs/core'
+// 导出 实例类型
 import type { Instance } from '@popperjs/core'
-import useClickOutside from '../../hooks/useClickOutside.ts'
-import type { TooltipEmits, TooltipInstance, TooltipProps } from './type.ts'
-// 父组件传进来的值
+import { debounce } from 'lodash-es'
+import useClickoutside from '../../hooks/useClickOutside'
+import type { TooltipEmits, TooltipInstance, TooltipProps } from './types'
+
+defineOptions({
+  name: 'si-tooltip',
+})
+
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: 'bottom',
   trigger: 'hover',
-  openDelay: 0,
-  closeDelay: 0,
+  openDelay: 200,
+  closeDelay: 200,
+  transtion: 'fade',
 })
-// 子组件触发事件
 const emit = defineEmits<TooltipEmits>()
-// 创建节点
-const TooltipNode = ref<HTMLElement | undefined>(undefined)
-// 创建两个node节点
-const TNode = ref<HTMLElement | null>(null)
-const PNode = ref<HTMLElement | null>(null)
-let propperInstance: null | Instance = null
-// 弹窗是否展示
-const isOpen = ref(false)
-let openTimes = 0
-let closeTimes = 0
+const openDelay = ref(0)
+const closeDelay = ref(0)
+
+// 触发节点
+const TooltipTriggerRef = ref<HTMLElement>()
+// 展示节点
+const TooltipPropperRef = ref<HTMLElement>()
+// 总结点
+const TooltipRef = ref<HTMLElement>()
+// 触发实例
+// const triggerInstance: Instance | null = null
+// 展示实例
+let propperInstance: Instance | null = null
+// 弹窗是否显示
+const Tooltipvisible = ref(false)
+// 事件注册 Record<string, any>  限制对象里的 键值
+let triggerEventListener: Record<string, any> = reactive({})
+let tooltipEventListener: Record<string, any> = reactive({})
+// popper 参数
 const popperOptions = computed(() => {
   return {
-    placements: props.placement,
+    placement: props.placement,
     ...props.popperOptions,
     modifiers: [
       {
@@ -38,134 +52,164 @@ const popperOptions = computed(() => {
     ],
   }
 })
-// hover
+
+// 当鼠标进入时触发
 function open() {
-  openTimes++
-  console.log('open times', openTimes)
-  isOpen.value = true
+  openDelay.value++
+  console.log('open', openDelay.value)
+  Tooltipvisible.value = true
+  // 派发出去对应事件;
   emit('visibleChange', true)
 }
+
+// 当鼠标离开时触发
 function close() {
-  closeTimes++
-  console.log('close times', closeTimes)
-  isOpen.value = false
+  closeDelay.value++
+  console.log('close', closeDelay.value)
+  Tooltipvisible.value = false
+  // 派发出去对应事件
   emit('visibleChange', false)
 }
-const opendebounce = debounce(open, props.openDelay)
-const closedebounce = debounce(close, props.closeDelay)
 
+const openDebounce = debounce(open, props.openDelay)
+const closeDebounce = debounce(close, props.closeDelay)
+/**
+ * 因为当你多次hover的时候，他会执行，因此我们希望hover目标盒子时，删除未调用的函数
+ */
 function openFinal() {
-  closedebounce.cancel()
-  opendebounce()
+  closeDebounce.cancel()
+  openDebounce()
 }
 function closeFinal() {
-  opendebounce.cancel()
-  closedebounce()
+  console.log(123)
+  openDebounce.cancel()
+  closeDebounce()
 }
-// 组件触发点击
-function triggerClick() {
-  // isOpen.value = !isOpen.value;
-  // emit("visible-change", isOpen.value);
-  if (isOpen.value) {
+
+// 对应取反 点击事件
+function triggerPopper() {
+  Tooltipvisible.value = !Tooltipvisible.value
+  // 派发出去对应事件
+  emit('visibleChange', Tooltipvisible.value)
+  /**
+   * if (Tooltipvisible.value){
+   *    closeFinal()
+   * } else {
+   *    openFinal()
+   * }
+   */
+}
+useClickoutside(TooltipRef, () => {
+  if (props.trigger === 'click' && Tooltipvisible.value && !props.manual) {
     closeFinal()
-  } else {
-    openFinal()
   }
-}
-// 定义事件监听器
-let Tooltipevents: Record<string, any> = reactive({})
-let smallTooltipevents: Record<string, any> = reactive({})
-
-// 组件初次渲染 开始注册事件
+})
 function attachEvents() {
+  // 当触发方式为点击时
   if (props.trigger === 'click') {
-    smallTooltipevents.click = triggerClick
+    // 动态添加 click 事件
+    triggerEventListener.click = triggerPopper
   } else if (props.trigger === 'hover') {
-    smallTooltipevents.mouseenter = openFinal
-    Tooltipevents.mouseleave = closeFinal
+    // mouseover
+    triggerEventListener.mouseenter = openFinal
+    triggerEventListener.mouseleave = (e: MouseEvent) => {
+      // 如果鼠标进入了 Popper，就不关闭
+      if (!TooltipPropperRef.value?.contains(e.relatedTarget as Node)) {
+        closeFinal()
+      }
+    }
+
+    // Popper 区域事件
+    tooltipEventListener.mouseenter = openFinal // 鼠标进入 Popper 时保持显示
+    tooltipEventListener.mouseleave = closeFinal // 鼠标离开 Popper 时才关闭
   }
 }
-
 if (!props.manual) {
+  // 首次渲染
   attachEvents()
 }
-
-useClickOutside(TooltipNode, () => {
-  // if (isOpen.value && PNode.value) {
-  //   isOpen.value = !isOpen.value;
-  // }
-  if (isOpen.value && props.trigger === 'click' && !props.manual) {
-    close()
-  }
-})
-
-watch(() => props.manual, (isManual) => {
-  if (isManual) {
-    Tooltipevents = {}
-    smallTooltipevents = {}
-  } else {
-    attachEvents()
-  }
-})
-
+/** 观察 manual */
 watch(
-  isOpen,
-  (newValue) => {
-    if (newValue) {
-      if (TNode.value && PNode.value) {
-        // 根据两个节点都存在创建对应实例
-        propperInstance = createPopper(TNode.value, PNode.value, {
-          ...popperOptions.value,
-        })
-      }
+  () => props.manual,
+  (isManual) => {
+    if (isManual) {
+      triggerEventListener = {}
+      tooltipEventListener = {}
     } else {
-      // 没有显示就销毁对应实例
-      propperInstance?.destroy()
-    }
-  },
-  {
-    flush: 'post',
-  },
-)
-// 选项期望接受一个对象，其中键是需要侦听的响应式组件实例属性
-watch(
-  () => props.trigger,
-  (newValue, oldValue) => {
-    if (newValue !== oldValue) {
-      Tooltipevents = {}
-      smallTooltipevents = {}
       attachEvents()
     }
   },
 )
-// 组件卸载执行
+watch(
+  Tooltipvisible,
+  (newValue) => {
+    // 假如为true 显示得时候
+    if (newValue) {
+      // 两个节点都得存在
+      if (TooltipPropperRef.value && TooltipTriggerRef.value) {
+        propperInstance = createPopper(
+          TooltipTriggerRef.value,
+          TooltipPropperRef.value,
+          popperOptions.value,
+        )
+      } else {
+        // 隐藏得时候 需要实例销毁
+        propperInstance?.destroy()
+      }
+    }
+  },
+  {
+    // dom节点生成之后 调用
+    flush: 'post',
+  },
+)
+watch(
+  () => props.trigger,
+  (newValue, oldValue) => {
+    if (newValue !== oldValue) {
+      // 两者不一样时
+      triggerEventListener = {}
+      tooltipEventListener = {}
+      attachEvents()
+    }
+  },
+)
 onUnmounted(() => {
-  Tooltipevents = {}
-  smallTooltipevents = {}
+  propperInstance?.destroy()
 })
-
-// 暴露出实例
-
+// 暴露出实例 具有打开或控制
 defineExpose<TooltipInstance>({
-  show: open,
-  hide: close,
+  show: openFinal,
+  hide: closeFinal,
 })
+
+// onMounted(() => {
+//   attachEvents();
+// });
 </script>
 
 <template>
-  <div ref="TooltipNode" class="si-tooltip" v-on="Tooltipevents">
-    <div ref="TNode" class="si-tooltip__trigger" v-on="smallTooltipevents">
+  <div ref="TooltipRef" class="si-tooltip" v-on="tooltipEventListener">
+    <div
+      ref="TooltipTriggerRef"
+      class="si-tooltip__trigger"
+      v-on="triggerEventListener"
+    >
+      <!-- 外部 -->
       <slot />
     </div>
-    <Transition name="fade">
-      <div v-if="isOpen" ref="PNode" class="si-tooltip__popper">
+    <Transition :name="transtion">
+      <div
+        v-if="Tooltipvisible"
+        ref="TooltipPropperRef"
+        class="si-tooltip__popper"
+      >
+        <!-- 内容自定义 -->
         <slot name="content">
-          {{ props.content }}
+          {{ content }}
         </slot>
         <div id="arrow" data-popper-arrow />
       </div>
     </Transition>
   </div>
 </template>
-
-<style scoped></style>
