@@ -79,6 +79,7 @@ function updateHeight() {
 defineExpose({
   bottomOffset,
   isVisible,
+  MessageRef,
 })
 </script>
 
@@ -101,7 +102,7 @@ defineExpose({
     >
       <div class="si-message__content">
         <!-- {{ offset }} - {{ topOffset }} - {{ height }} - {{ bottomOffset }} -->
-        <RenderVode v-if="message" :vnode="message" />
+        <RenderVode v-if="message" :v-node="message" />
       </div>
       <div v-if="showclose" class="si-message__close">
         <Icon icon="xmark" @click.stop="isVisible = false" />

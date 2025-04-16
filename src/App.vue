@@ -3,6 +3,7 @@ import { h, onMounted, reactive, ref } from 'vue'
 import SiTooltip from './components/Tooltip/Tooltip.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 import type { Options } from './components/Tooltip/types'
+import Message from './components/Message/Message.vue'
 import type { MenuOption } from '@/components/Dropdown/types'
 import SiButton from '@/components/Button/Button.vue'
 import SiIcon from '@/components/Icon/Icon.vue'
@@ -10,6 +11,7 @@ import Button from '@/components/Button/Button.vue'
 import type { ButtonInstance } from '@/components/Button/types.ts'
 import type { TooltipInstance } from '@/components/Tooltip/type.ts'
 import Dropdown from '@/components/Dropdown/Dropdown.tsx'
+import createMessage from '@/components/Message/method'
 // button
 const buttonRef = ref<ButtonInstance | null>(null)
 const tooltipRef = ref<TooltipInstance | null>(null)
@@ -40,6 +42,12 @@ onMounted(() => {
   // if (buttonRef.value) {
   //   console.log("app mounted", buttonRef.value.ref);
   // }
+  const instance222 = createMessage({
+    message: '1111111111111',
+    type: 'success',
+    showclose: true,
+  })
+  console.log(instance222)
 })
 </script>
 

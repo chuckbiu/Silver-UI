@@ -31,6 +31,8 @@ export default defineConfig({
           { text: 'Collapse 折叠面板', link: 'md/components/collapse' },
           { text: 'Tooltip  折叠面板', link: 'md/components/tooltip' },
           { text: 'Dropdown  下拉菜单', link: 'md/components/dropdown' },
+          { text: 'Message  消息提示', link: 'md/components/message' },
+
         ],
       },
     ],

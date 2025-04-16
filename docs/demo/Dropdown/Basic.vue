@@ -17,7 +17,7 @@ const options: MenuOption[] = [
       :menu-options="options"
       trigger="hover"
     >
-      <span class="si-SiDropdown-link">
+      <span class="si-dropdown-link">
         Dropdown List
         <Icon icon="fa-chevron-down" class="si-icon--right" />
       </span>
