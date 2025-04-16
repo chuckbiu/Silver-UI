@@ -37,6 +37,12 @@
       }
     }
   }
+  &.is-disabled {
+    opacity: .6;
+    .si-switch__core {
+      cursor: not-allowed;
+    }
+  }
   /**
         选择框按钮样式
     **/
@@ -61,7 +67,46 @@
     }
   }
 }
-
+.si-switch--large {
+  font-size: 14px;
+  line-height: 24px;
+  height: 40px;
+  .si-switch__core {
+    min-width: 50px;
+    height: 24px;
+    border-radius: 12px;
+    .si-switch__core-action {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &.is-checked {
+    .si-switch__core .si-switch__core-action {
+      left: calc(100% - 21px);
+      color: var(--si-switch-on-color);
+    }
+  }
+}
+.si-switch--small {
+  font-size: 12px;
+  line-height: 16px;
+  height: 24px;
+  .si-switch__core {
+    min-width: 30px;
+    height: 16px;
+    border-radius: 8px;
+    .si-switch__core-action {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  &.is-checked {
+    .si-switch__core .si-switch-core-action {
+      left: calc(100% - 13px);
+      color: var(--si-switch-on-color);
+    }
+  }
+}
 /**
     元素 获取焦点 样式 tab
 **/

@@ -4,6 +4,8 @@ import SiTooltip from './components/Tooltip/Tooltip.vue'
 import Tooltip from './components/Tooltip/Tooltip.vue'
 import type { Options } from './components/Tooltip/types'
 import Message from './components/Message/Message.vue'
+import SiInput from './components/Input/Input.vue'
+import Switch from './components/Switch/Switch.vue'
 import type { MenuOption } from '@/components/Dropdown/types'
 import SiButton from '@/components/Button/Button.vue'
 import SiIcon from '@/components/Icon/Icon.vue'
@@ -29,6 +31,8 @@ const options: MenuOption[] = [
   { key: 3, label: 'Action 3' },
   { key: 4, label: 'Action 4', divided: true },
 ]
+const inputValue = ref('')
+const SwitchValue = ref(false)
 function open() {
   tooltipRef.value?.show()
 }
@@ -42,12 +46,12 @@ onMounted(() => {
   // if (buttonRef.value) {
   //   console.log("app mounted", buttonRef.value.ref);
   // }
-  const instance222 = createMessage({
-    message: '1111111111111',
-    type: 'success',
-    showclose: true,
-  })
-  console.log(instance222)
+  // const instance222 = createMessage({
+  //   message: '1111111111111',
+  //   type: 'success',
+  //   showclose: true,
+  // })
+  // console.log(instance222)
 })
 </script>
 
@@ -77,6 +81,32 @@ onMounted(() => {
           <SiIcon icon="fa-chevron-down" class="si-icon--right" />
         </span>
       </Dropdown>
+    </div>
+    <div>
+      <SiInput
+        v-model="inputValue"
+        size="small"
+        is-focus
+        placeholder="Please input"
+        disabled
+        style="width: 250px;"
+      />
+    </div>
+    <div>
+      <Switch v-model="SwitchValue" />
+    </div>
+    <div>
+      <Switch
+        v-model="SwitchValue"
+        size="large"
+      />
+      <br>
+      <Switch v-model="SwitchValue" />
+      <br>
+      <Switch
+        v-model="SwitchValue"
+        size="small"
+      />
     </div>
   </div>
 </template>

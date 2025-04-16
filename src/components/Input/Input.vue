@@ -61,6 +61,7 @@ function handleBlur(event: FocusEvent) {
  * clear 点击清除按钮事件
  */
 function clear() {
+  console.log('clear')
   modelValue.value = ''
   emit('update:modelValue', '')
   emit('clear')
@@ -86,6 +87,11 @@ const showClear = computed(
 const showPasswordArea = computed(
   () => props.showPassword && !props.disabled && !!modelValue.value,
 )
+/**
+ * 清除操作 特殊处理
+ */
+function NOOP() {}
+
 watch(
   () => props.modelValue,
   (newValue) => {
@@ -121,7 +127,12 @@ defineExpose({
         </span>
       </div>
 
-      <div class="si-input__wrapper">
+      <div
+        class="si-input__wrapper"
+        :class="{
+          'is-focus': isFocus,
+        }"
+      >
         <!-- prefix slot -->
         <span v-if="$slots.prefix" class="si-input__prefix">
           <slot name="prefix" />
@@ -158,6 +169,7 @@ defineExpose({
             icon="circle-xmark"
             class="si-input__clear"
             @click="clear"
+            @mousedown.prevent="NOOP"
           />
           <!-- 隐藏密码图标 -->
           <Icon
@@ -186,7 +198,7 @@ defineExpose({
         ref="inputRef"
         v-bind="attrs"
         v-model="modelValue"
-        class="si-textarea__wrappper"
+        class="si-textarea__wrapper"
         :readonly="readonly"
         :autocomplete="autocomplete"
         :placeholder="placeholder"

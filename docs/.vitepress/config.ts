@@ -32,6 +32,10 @@ export default defineConfig({
           { text: 'Tooltip  折叠面板', link: 'md/components/tooltip' },
           { text: 'Dropdown  下拉菜单', link: 'md/components/dropdown' },
           { text: 'Message  消息提示', link: 'md/components/message' },
+          { text: 'Input  输入框', link: 'md/components/input' },
+          { text: 'Switch  开关', link: 'md/components/switch' },
+          { text: 'Select  选择器', link: 'md/components/select' },
+          { text: 'form  表单', link: 'md/components/form' },
 
         ],
       },
