@@ -1,4 +1,9 @@
 {
+  "compilerOptions": {
+    // ... 其他编译器选项 ...
+    "jsx": "preserve"
+    // ... 更多选项 ...
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"

@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import Dropdown from './Dropdown.tsx'
+import Dropdown from './Dropdown'
 
 // dropdown 插件化
 
