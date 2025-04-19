@@ -10,8 +10,8 @@ outline: deep
 
 首先确保正确安装以下开发环境：
 
-- Node.js >= 16
-- Vue >= 3.3
+- Node.js >= 20
+- Vue >= 3.5
 - TypeScript >= 5.0
 
 ## 安装
@@ -19,11 +19,11 @@ outline: deep
 ::: code-group
 
 ```bash [npm]
-npm install sliver-ui
+npm install @chuck1/silver-ui
 ```
 
 ```bash [pnpm]
-pnpm add sliver-ui
+pnpm add @chuck1/silver-ui
 ```
 
 :::
