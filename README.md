@@ -1,6 +1,22 @@
-# s-ui
+# silver-ui
 
 This template should help get you started developing with Vue 3 in Vite.
+
+## 项目安装
+
+```shell
+npm i @chuck1/silver-ui
+```
+
+## 项目使用
+
+```ts
+import SiElement from '@chuck1/silver-ui'
+import { createApp } from 'vue'
+import App from './App.vue'
+import '@chuck1/silver-ui/dist/si-element.css' // 样式
+createApp(App).use(SiElement).mount('#app') // 组件挂载
+```
 
 ## Recommended IDE Setup
 
