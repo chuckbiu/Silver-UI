@@ -5,7 +5,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import VueMacros from 'unplugin-vue-macros'
-import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   plugins: [
@@ -15,12 +14,7 @@ export default defineConfig({
         vueJsx: vueJsx(),
       },
     }),
-    dts({
-      entryRoot: './src',
-      outDir: 'dist/types',
-      include: ['src/**/*.ts', 'src/**/*.vue'],
-      tsconfigPath: './tsconfig.build.json',
-    }),
+
   ],
   resolve: {
     alias: {
@@ -28,10 +22,12 @@ export default defineConfig({
     },
   },
   build: {
+    outDir: 'dist/umd',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'SiElement',
       fileName: 'si-element',
+      formats: ['umd'],
     },
     rollupOptions: {
       external: ['vue'],

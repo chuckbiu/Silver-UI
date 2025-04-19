@@ -85,7 +85,7 @@ defineExpose<DropdownInstance>({
               }"
               @click="itemClick(item)"
             >
-              <RenderVode :vnode="item.label" />
+              <RenderVode :v-node="item.label" />
             </li>
           </template>
         </ul>
@@ -93,3 +93,37 @@ defineExpose<DropdownInstance>({
     </Tooltip>
   </div>
 </template>
+
+<style lang="css" scoped>
+ .si-dropdown__menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  .si-dropdown__item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    list-style: none;
+    line-height: 22px;
+    padding: 5px 16px;
+    margin: 0;
+    font-size: var(--si-font-size-base);
+    color: var(--si-text-color-regular);
+    cursor: pointer;
+    outline: none;
+    &:hover {
+      background-color: var(--si-dropdown-menuItem-hover-fill);
+      color: var(--si-dropdown-menuItem-hover-color);
+    }
+    &.is-disabled {
+      color: var(--si-dropdown-menuItem-disabled-color);
+      cursor: not-allowed;
+      background-image: none;
+    }
+  }
+  .divided-placeholder {
+    margin: 6px 0;
+    border-top: 1px solid var(--si-dropdown-menuItem-divided-color);
+  }
+}
+</style>

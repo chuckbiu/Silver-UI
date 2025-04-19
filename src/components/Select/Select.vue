@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue'
 import type { Ref } from 'vue'
-import _, { isFunction } from 'lodash'
+import _ from 'lodash'
 import type { InputInstance } from '../Input/types'
 import Input from '../Input/Input.vue'
 import Tooltip from '../Tooltip/Tooltip.vue'
@@ -14,6 +14,7 @@ import type {
 } from './types'
 import RenderVode from '@/hooks/RenderVnode'
 import type { TooltipInstance } from '@/components/Tooltip/types'
+import useClickOutside from '@/hooks/useClickOutside'
 
 defineOptions({
   name: 'si-select',
@@ -44,6 +45,11 @@ const tooltipRef = ref() as Ref<TooltipInstance>
  * input 实例对象
  */
 const InputRef = ref() as Ref<InputInstance>
+/**
+ * 创建一个ElementHTML
+ *
+ */
+const ElementHTML = ref<HTMLElement>()
 /**
  * 初始化 option
  */
@@ -123,7 +129,7 @@ async function generateFilterOptions(searchValue: string) {
   } else if (
     props.remote
     && props.remoteMethod
-    && isFunction(props.remoteMethod)
+    && _.isFunction(props.remoteMethod)
   ) {
     /**
      * 远程操作
@@ -277,10 +283,19 @@ function itemSelect(e: SelectOption) {
   controlDropdown(false)
   InputRef.value.ref.focus()
 }
+
+/**
+ * 点击外面取消
+ */
+useClickOutside(ElementHTML, () => {
+  // 关闭
+  controlDropdown(false)
+})
 </script>
 
 <template>
   <div
+    ref="ElementHTML"
     class="si-select"
     :class="{
       'is-disabled': disabled,
@@ -292,7 +307,7 @@ function itemSelect(e: SelectOption) {
     <Tooltip
       ref="tooltipRef"
       manual
-      placement="bottom-start"
+      placement="bottom"
       trigger="click"
       :popper-options="propperOptions"
       @clickoutside-change="controlDropdown(false)"
@@ -351,7 +366,7 @@ function itemSelect(e: SelectOption) {
               @click.stop="itemSelect(item)"
             >
               <RenderVode
-                :vnode="renderLabel ? renderLabel(item) : item.label"
+                :v-node="renderLabel ? renderLabel(item) : item.label"
               >
                 {{ item.label }}
               </RenderVode>

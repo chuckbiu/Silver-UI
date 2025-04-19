@@ -56,7 +56,7 @@ const popperOptions = computed(() => {
 // 当鼠标进入时触发
 function open() {
   openDelay.value++
-  console.log('open', openDelay.value)
+  // console.log('open', openDelay.value)
   Tooltipvisible.value = true
   // 派发出去对应事件;
   emit('visibleChange', true)
@@ -65,7 +65,7 @@ function open() {
 // 当鼠标离开时触发
 function close() {
   closeDelay.value++
-  console.log('close', closeDelay.value)
+  // console.log('close', closeDelay.value)
   Tooltipvisible.value = false
   // 派发出去对应事件
   emit('visibleChange', false)
@@ -81,7 +81,6 @@ function openFinal() {
   openDebounce()
 }
 function closeFinal() {
-  console.log(123)
   openDebounce.cancel()
   closeDebounce()
 }

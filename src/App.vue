@@ -6,6 +6,9 @@ import type { Options } from './components/Tooltip/types'
 import Message from './components/Message/Message.vue'
 import SiInput from './components/Input/Input.vue'
 import Switch from './components/Switch/Switch.vue'
+import Select from './components/Select/Select.vue'
+import type { SelectOption } from './components/Select/types'
+import Remote from './components/Select/Remote.vue'
 import type { MenuOption } from '@/components/Dropdown/types'
 import SiButton from '@/components/Button/Button.vue'
 import SiIcon from '@/components/Icon/Icon.vue'
@@ -31,8 +34,15 @@ const options: MenuOption[] = [
   { key: 3, label: 'Action 3' },
   { key: 4, label: 'Action 4', divided: true },
 ]
+const selectoptions: SelectOption [] = [
+  { value: '1', label: 'Action 1' },
+  { value: '2', label: 'Action 2', disabled: true },
+  { value: '3', label: 'Action 3' },
+  { value: '4', label: 'Action 4' },
+]
 const inputValue = ref('')
 const SwitchValue = ref(false)
+const Selectvalue = ref('')
 function open() {
   tooltipRef.value?.show()
 }
@@ -41,6 +51,9 @@ function close() {
 }
 function inlineConsole(...args: any) {
   console.log(...args)
+}
+function selectchange(e: any) {
+  console.log(e)
 }
 onMounted(() => {
   // if (buttonRef.value) {
@@ -72,7 +85,7 @@ onMounted(() => {
         ref="tooltipRef"
         :menu-options="options"
         :popper-options="optionsTooltips"
-        trigger="hover"
+        trigger="click"
         @visible-change="(e) => inlineConsole('visible change', e)"
         @select="(e) => inlineConsole('select', e)"
       >
@@ -107,6 +120,22 @@ onMounted(() => {
         v-model="SwitchValue"
         size="small"
       />
+    </div>
+
+    <div style="width: 240px">
+      <Select
+        v-model="Selectvalue"
+        :options="selectoptions"
+        placeholder="请选择"
+        @change="selectchange"
+      />
+      <Select
+        v-model="Selectvalue"
+        :options="selectoptions"
+        placeholder="请选择"
+        clearable
+      />
+      <Remote />
     </div>
   </div>
 </template>

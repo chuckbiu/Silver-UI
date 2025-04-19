@@ -8,7 +8,7 @@ defineOptions({
 })
 withDefaults(defineProps<buttonProps>(), {
   nativeType: 'button',
-  //  disabled: true, // 设置默认值
+  // disabled: true, // 设置默认值
   // loading: false, // 设置默认值
 })
 const _ref = ref<HTMLButtonElement>()

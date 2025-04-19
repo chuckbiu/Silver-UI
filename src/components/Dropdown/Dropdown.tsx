@@ -9,7 +9,7 @@ export default defineComponent({
   name: 'SiDropdown', // 名称
   // 传值
   props: {
-    placements: {
+    placement: {
       // as PropType 更加准确定义类型
       type: String as PropType<Placement>,
       default: 'bottom',
@@ -65,7 +65,7 @@ export default defineComponent({
     }
     expose({
       show: () => tooltipRef.value?.show(),
-      close: () => tooltipRef.value?.hide(),
+      hide: () => tooltipRef.value?.hide(),
     })
     const options = computed(() => {
       return props.menuOptions.map((item) => {
@@ -98,7 +98,7 @@ export default defineComponent({
       <div class="si-dropdown">
         <Tooltip
           trigger={props.trigger}
-          placements={props.placements}
+          placement={props.placement}
           popperOptions={props.popperOptions}
           openDelay={props.openDelay}
           closeDelay={props.closeDelay}

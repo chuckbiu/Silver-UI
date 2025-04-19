@@ -15,7 +15,7 @@ export interface SelectProps {
   // 选项
   options?: SelectOption[]
   // 提示
-  placeholder: string
+  placeholder?: string
   // 自定义模板
   renderLabel?: RenderLabelFunc
   // 过滤

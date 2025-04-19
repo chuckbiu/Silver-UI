@@ -28,18 +28,16 @@ export default defineConfig({
     },
   },
   build: {
+    outDir: 'dist/es',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'SiElement',
       fileName: 'si-element',
+      formats: ['es'],
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', '@fortawesome/fontawesome-svg-core', '@fortawesome/free-solid-svg-icons', '@fortawesome/vue-fontawesome', '@popperjs/core', 'axios'],
       output: {
-        exports: 'named',
-        globals: {
-          vue: 'vue',
-        },
       },
     },
   },

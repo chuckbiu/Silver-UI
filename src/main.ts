@@ -1,6 +1,6 @@
 import './styles/index.css'
 import { createApp } from 'vue'
-// import App from './App.vue'
+import myPlugin from './test.plugin'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -13,5 +13,6 @@ import App from './App.vue'
 library.add(fas)
 
 // console.log(App.render?.toString())
-createApp(App)
-  .mount('#app')
+const app = createApp(App)
+app.use(myPlugin)
+app.mount('#app')
