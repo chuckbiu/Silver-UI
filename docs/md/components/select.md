@@ -1,3 +1,13 @@
+---
+outline: deep
+prev:
+  text: "Switch 开关"
+  link: "/md/components/switch"
+next:
+  text: "正在开发 敬请期待 ！！！"
+#   link: "/md/components/tooltip"
+---
+
 # Select 选择器
 
 当选项过多时，使用下拉菜单展示并选择内容。

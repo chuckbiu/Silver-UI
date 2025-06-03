@@ -1,3 +1,13 @@
+---
+outline: deep
+prev:
+  text: "Message 消息提示"
+  link: "/md/components/message"
+next:
+  text: "Switch 开关"
+  link: "/md/components/switch"
+---
+
 # Input 输入框
 
 通过鼠标或键盘输入字符
@@ -52,20 +62,20 @@
 
 ### Attributes
 
-| 属性名        | 说明                                                         | 类型                                                         | 默认值 |
-| :------------ | :----------------------------------------------------------- | :----------------------------------------------------------- | :----- |
-| type          | 类型                                                         | `string` 等[原生 input 类型](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form__types) | text   |
-| v-model       | 绑定值                                                       | `string` / `number`                                          | —      |
-| disabled      | 是否禁用                                                     | `boolean`                                                    | false  |
-| size          | 输入框尺寸，只在 `type` 不为 'textarea' 时有效               | small / large                                                | —      |
-| autocomplete  | 原生 `autocomplete` 属性                                     | `string`                                                     | off    |
-| placeholder   | 输入框占位文本                                               | `string`                                                     | —      |
-| clearable     | 是否显示清除按钮，只有当 `type` 不是 textarea时生效          | `boolean`                                                    | false  |
-| autofocus     | 原生属性，自动获取焦点                                       | `boolean`                                                    | false  |
-| parser        | 指定从格式化器输入中提取的值。(仅当 `type` 是"text"时才起作用) | `Function`                                                   | —      |
-| show-password | 是否显示切换密码图标                                         | `boolean`                                                    | false  |
-| form          | 原生属性                                                     | `string`                                                     | —      |
-| readonly      | 只读属性                                                     | `boolean`                                                    | false  |
+| 属性名        | 说明                                                           | 类型                                                                                                      | 默认值 |
+| :------------ | :------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- | :----- |
+| type          | 类型                                                           | `string` 等[原生 input 类型](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form__types) | text   |
+| v-model       | 绑定值                                                         | `string` / `number`                                                                                       | —      |
+| disabled      | 是否禁用                                                       | `boolean`                                                                                                 | false  |
+| size          | 输入框尺寸，只在 `type` 不为 'textarea' 时有效                 | small / large                                                                                             | —      |
+| autocomplete  | 原生 `autocomplete` 属性                                       | `string`                                                                                                  | off    |
+| placeholder   | 输入框占位文本                                                 | `string`                                                                                                  | —      |
+| clearable     | 是否显示清除按钮，只有当 `type` 不是 textarea时生效            | `boolean`                                                                                                 | false  |
+| autofocus     | 原生属性，自动获取焦点                                         | `boolean`                                                                                                 | false  |
+| parser        | 指定从格式化器输入中提取的值。(仅当 `type` 是"text"时才起作用) | `Function`                                                                                                | —      |
+| show-password | 是否显示切换密码图标                                           | `boolean`                                                                                                 | false  |
+| form          | 原生属性                                                       | `string`                                                                                                  | —      |
+| readonly      | 只读属性                                                       | `boolean`                                                                                                 | false  |
 
 ### Events
 
@@ -91,4 +101,3 @@
 | 名称 | 说明                       | 类型     |
 | :--- | :------------------------- | :------- |
 | ref  | HTML元素 input 或 textarea | `object` |
-

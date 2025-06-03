@@ -1,3 +1,13 @@
+---
+outline: deep
+prev:
+  text: "Icon"
+  link: "/md/components/icon"
+next:
+  text: "Tooltip"
+  link: "/md/components/tooltip"
+---
+
 # Dropdown 下拉菜单
 
 将动作或菜单折叠到下拉菜单中。
@@ -36,13 +46,13 @@
 
 ### Dropdown Attributes
 
-| 属性名        | 说明                                                         | 类型      | Default |
-| :------------ | :----------------------------------------------------------- | :-------- | :------ |
-| placement     | 菜单弹出位置                                                 | `enum`    | bottom  |
-| trigger       | 触发下拉的行为                                               | `enum`    | —       |
-| disabled      | 是否禁用                                                     | `boolean` | false   |
-| openDelay     | 打开延迟                                                     | `number`  | 0       |
-| closeDelay    | 关闭延迟                                                     | `number`  | 0       |
+| 属性名        | 说明                                                             | 类型      | Default |
+| :------------ | :--------------------------------------------------------------- | :-------- | :------ |
+| placement     | 菜单弹出位置                                                     | `enum`    | bottom  |
+| trigger       | 触发下拉的行为                                                   | `enum`    | —       |
+| disabled      | 是否禁用                                                         | `boolean` | false   |
+| openDelay     | 打开延迟                                                         | `number`  | 0       |
+| closeDelay    | 关闭延迟                                                         | `number`  | 0       |
 | popperOptions | [popper.js](https://popper.js.org/docs/v2/) 参数 参考tooltip组件 | `object`  | —       |
 
 ### menuOptions Attributes
@@ -54,16 +64,16 @@
 
 ### Dropdown Slots
 
-| 插槽名  | 说明                                                         | 子标签 |
-| :------ | :----------------------------------------------------------- | :----- |
+| 插槽名  | 说明                                                                              | 子标签 |
+| :------ | :-------------------------------------------------------------------------------- | :----- |
 | default | 下拉菜单触发内容。 注意：必须是有效的 html DOM 元素（例如 `<span>、<button>` 等） | —      |
 
 ### Dropdown Events
 
-| 事件名         | 说明                                                         | 类型       |
-| :------------- | :----------------------------------------------------------- | :--------- |
+| 事件名         | 说明                                                                       | 类型       |
+| :------------- | :------------------------------------------------------------------------- | :--------- |
 | visible-change | 当下拉菜单出现/消失时触发器, 当它出现时, 参数将是 `true`, 否则将是 `false` | `Function` |
-| select         | 当下拉项被点击时触发                                         | `Function` |
+| select         | 当下拉项被点击时触发                                                       | `Function` |
 
 ### dropdown Exposes
 
@@ -71,4 +81,3 @@
 | :----- | :----------- | :--------- |
 | show   | 打开下拉菜单 | `Function` |
 | hide   | 关闭下拉菜单 | `Function` |
-

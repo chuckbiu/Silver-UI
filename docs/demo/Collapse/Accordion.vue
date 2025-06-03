@@ -9,8 +9,9 @@ const openValue = ref(['1'])
 <template>
   <SiCollapse
     v-model="openValue"
+    accordion
   >
-    <SiCollapseItem title="静夜思" name="1" accordion>
+    <SiCollapseItem title="静夜思" name="1">
       <div>
         床前明月光，疑是地上霜。
       </div>

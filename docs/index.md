@@ -12,7 +12,7 @@ hero:
       link: /md/guide/quick-start
     - theme: alt
       text: 组件文档
-      link: /md/components/overview
+      link: /md/components/button
 
 features:
   - icon: 🎨
@@ -43,7 +43,6 @@ features:
 - 🔥 使用 TypeScript 开发，提供完整的类型定义
 - 📦 开箱即用的高质量 Vue 组件
 - 🎨 支持主题定制，可配置设计规范
-- 🌍 国际化支持
 - ⚡️ 支持按需引入和 Tree Shaking
 - 🎯 使用 Vite 构建，开发体验极致
 

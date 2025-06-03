@@ -1,3 +1,15 @@
+---
+outline: deep
+
+prev:
+  text: "Collapse 折叠面板"
+  link: "/md/components/collapse"
+next:
+  text: "Message 消息提示"
+  link: "/md/components/message"
+
+---
+
 # Tooltip 文字提示
 
 常用于展示鼠标 hover 时的提示信息。
@@ -30,16 +42,16 @@
 
 ### Attributes
 
-| 名称           | 说明                                             | 类型                                                         | 默认值 |
-| :------------- | :----------------------------------------------- | :----------------------------------------------------------- | :----- |
-| content        | 显示的内容，也可被 `slot#content` 覆盖           | `string`                                                     | ''     |
-| placement      | Tooltip 组件出现的位置                           | `enum`                                                       | bottom |
-| disabled       | Tooltip 组件是否禁用                             | `boolean`                                                    | false  |
-| popper-options | [popper.js](https://popper.js.org/docs/v2/) 参数 | `object` 请参考 [popper.js](https://popper.js.org/docs/v2/) 文档 | {}     |
-| open-delay     | 在触发后多久显示内容，单位毫秒                   | `number`                                                     | 200    |
-| close-delay    | 延迟关闭，单位毫秒                               | `number`                                                     | 200    |
-| trigger        | 如何触发 Tooltip                                 | `hover` | `click`                                            | hover  |
-| manual         | 是否手动触发                                     | `boolean`                                                    | false  |
+| 名称           | 说明                                             | 类型                                                             | 默认值  |
+| :------------- | :----------------------------------------------- | :--------------------------------------------------------------- | :------ | ----- |
+| content        | 显示的内容，也可被 `slot#content` 覆盖           | `string`                                                         | ''      |
+| placement      | Tooltip 组件出现的位置                           | `enum`                                                           | bottom  |
+| disabled       | Tooltip 组件是否禁用                             | `boolean`                                                        | false   |
+| popper-options | [popper.js](https://popper.js.org/docs/v2/) 参数 | `object` 请参考 [popper.js](https://popper.js.org/docs/v2/) 文档 | {}      |
+| open-delay     | 在触发后多久显示内容，单位毫秒                   | `number`                                                         | 200     |
+| close-delay    | 延迟关闭，单位毫秒                               | `number`                                                         | 200     |
+| trigger        | 如何触发 Tooltip                                 | `hover`                                                          | `click` | hover |
+| manual         | 是否手动触发                                     | `boolean`                                                        | false   |
 
 ### Slots
 
@@ -52,6 +64,6 @@
 
 | 名称       | 详情                             | 类型       |
 | :--------- | :------------------------------- | :--------- |
-| contentRef | si-tooltip 组件实例      | `object`   |
+| contentRef | si-tooltip 组件实例              | `object`   |
 | show       | show方法控制 si-tooltip 显示状态 | `Function` |
 | hide       | hide方法控制 si-tooltip 显示状态 | `Function` |

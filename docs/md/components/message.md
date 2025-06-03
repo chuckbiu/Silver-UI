@@ -1,3 +1,13 @@
+---
+outline: deep
+prev:
+ text: "Tooltip 文字提示"
+ link: "/md/components/tooltip"
+next:
+  text: "Input 输入框"
+  link: "/md/components/input"
+---
+
 # Message 消息提示
 
 常用于主动操作后的反馈提示。 与 Notification 的区别是后者更多用于系统级通知的被动提醒。
@@ -43,4 +53,3 @@ Message 拥有可控的 duration， 默认的关闭时间为 3000 毫秒，当�
 | showclose | 是否显示关闭按钮                             | `boolean`                                 | false  |
 | offset    | Message 距离窗口顶部的偏移量                 | `number`                                  | 20     |
 | duration  | 显示时间，单位为毫秒。 设为 0 则不会自动关闭 | `number`                                  | 3000   |
-

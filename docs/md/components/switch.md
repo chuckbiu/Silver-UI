@@ -1,3 +1,13 @@
+---
+outline: deep
+prev:
+  text: "Input 输入框"
+  link: "/md/components/input"
+next:
+  text: "Select 选择器"
+  link: "/md/components/select"
+---
+
 # Switch 开关
 
 表示两种相互对立的状态间的切换，多用于触发「开/关」。
@@ -34,15 +44,15 @@
 
 ### Attributes
 
-| 属性名         | 说明                                                         | 类型                            | Default |
-| :------------- | :----------------------------------------------------------- | :------------------------------ | :------ |
+| 属性名         | 说明                                                                       | 类型                            | Default |
+| :------------- | :------------------------------------------------------------------------- | :------------------------------ | :------ |
 | v-model        | 绑定值，必须等于 `active-value` 或 `inactive-value`，默认为 `Boolean` 类型 | `boolean` / `string` / `number` | false   |
-| disabled       | 是否禁用                                                     | `boolean`                       | false   |
-| size           | switch 的大小                                                | small / large                   | —       |
-| active-text    | switch 打开时的文字描述                                      | `string`                        | ''      |
-| inactive-text  | switch 的状态为 `off` 时的文字描述                           | `string`                        | ''      |
-| active-value   | switch 状态为 `on` 时的值                                    | `boolean` / `string` / `number` | true    |
-| inactive-value | switch的状态为 `off` 时的值                                  | `boolean` / `string` / `number` | false   |
+| disabled       | 是否禁用                                                                   | `boolean`                       | false   |
+| size           | switch 的大小                                                              | small / large                   | —       |
+| active-text    | switch 打开时的文字描述                                                    | `string`                        | ''      |
+| inactive-text  | switch 的状态为 `off` 时的文字描述                                         | `string`                        | ''      |
+| active-value   | switch 状态为 `on` 时的值                                                  | `boolean` / `string` / `number` | true    |
+| inactive-value | switch的状态为 `off` 时的值                                                | `boolean` / `string` / `number` | false   |
 
 ### 事件
 
