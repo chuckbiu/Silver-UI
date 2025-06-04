@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, ref, useAttrs, watch } from 'vue'
+import { computed, inject, ref, useAttrs, watch } from 'vue'
 import type { Ref } from 'vue'
 import Icon from '../Icon/Icon.vue'
+import { formItemContextKey } from '../Form/types'
 import type { InputEmits, InputProps } from './types'
 
 defineOptions({
@@ -12,7 +13,11 @@ const props = withDefaults(defineProps<InputProps>(), {
   type: 'text',
   autocomplete: 'off',
 })
+
 const emit = defineEmits<InputEmits>()
+
+const formItemContext = inject(formItemContextKey)
+
 const attrs = useAttrs()
 /**
  * 组件实例
@@ -30,11 +35,19 @@ const isFocus = ref(false)
  * 是否展示密码显示图标
  */
 const showPasswordVisible = ref(false)
+
+function runValidation(trigger?: string) {
+  formItemContext?.validate(trigger).catch((e) => {
+    console.log(e.errors)
+  })
+}
+
 /**
  * change 事件
  */
 function handleChange() {
   emit('change', modelValue.value)
+  runValidation('change')
 }
 /**
  * input 事件
@@ -42,6 +55,7 @@ function handleChange() {
 function inputclick() {
   emit('update:modelValue', modelValue.value)
   emit('input', modelValue.value)
+  runValidation('input')
 }
 /**
  * Focus 事件
@@ -56,6 +70,7 @@ function handleFocus(event: FocusEvent) {
 function handleBlur(event: FocusEvent) {
   isFocus.value = false
   emit('blur', event)
+  runValidation('blur')
 }
 /**
  * clear 点击清除按钮事件

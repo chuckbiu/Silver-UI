@@ -44,4 +44,3 @@ createApp(App).use(SiElement).mount('#app') // 组件挂载
 
 1. 下面组件实例均已全局注册，可忽略文档所写引入方式，直接书写即可
 2. 特殊函数已存在于dist/types/hook 下面
-

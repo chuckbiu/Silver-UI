@@ -4,8 +4,8 @@ prev:
   text: "Switch 开关"
   link: "/md/components/switch"
 next:
-  text: "正在开发 敬请期待 ！！！"
-#   link: "/md/components/tooltip"
+ text: "Form 表单"
+ link: "/md/components/form"
 ---
 
 # Select 选择器

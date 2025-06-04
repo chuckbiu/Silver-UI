@@ -17,7 +17,9 @@
     "UI",
     "vue3"
   ],
-  "sideEffects": ["dist/si-element.css"],
+  "sideEffects": [
+    "dist/si-element.css"
+  ],
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -29,7 +31,6 @@
       "require": "./dist/"
     }
   },
-
   "main": "./dist/umd/si-element.umd.cjs",
   "module": "./dist/es/si-element.js",
   "types": "./dist/types/index.d.ts",
@@ -63,6 +64,7 @@
     "@popperjs/core": "^2.11.8",
     "@vitepress-demo-preview/component": "^2.3.2",
     "@vitepress-demo-preview/plugin": "^1.4.0",
+    "async-validator": "^4.2.5",
     "axios": "^1.8.2",
     "eslint-plugin-format": "^1.0.1",
     "lodash": "^4.17.21",
@@ -71,9 +73,7 @@
     "unplugin-vue-macros": "^2.14.5",
     "vitest": "^3.0.8",
     "vue": "^3.5.13"
-
   },
-
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
     "@commitlint/cli": "^19.8.0",

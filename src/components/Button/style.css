@@ -73,12 +73,16 @@
     margin-left: 12px;
   }
   /*  focus  CSS 伪类表示获得焦点的元素（如表单输入）。当用户点击或轻触一个元素或使用键盘的 Tab 键选择它时，它会被触发。*/
-  &:hover,
-  &:focus {
+  &:hover {
+    /* 鼠标悬停样式 */
     color: var(--si-button-hover-text-color);
-    border-color: var(--si-button-hover-border-color);
     background-color: var(--si-button-hover-bg-color);
-    outline: none;
+    border-color: var(--si-button-hover-border-color);
+  }
+
+  &:focus {
+    /* 焦点样式可自定义，或者什么也不写 */
+    outline: var(--si-button-outline-color);
   }
   &:active {
     color: var(--si-button-active-text-color);
