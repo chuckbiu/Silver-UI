@@ -1,0 +1,148 @@
+.si-button {
+  --si-button-font-weight: var(--si-font-weight-primary);
+  --si-button-border-color: var(--si-border-color);
+  --si-button-bg-color: var(--si-fill-color-blank);
+  --si-button-text-color: var(--si-text-color-regular);
+  --si-button-disabled-text-color: var(--si-disabled-text-color);
+  --si-button-disabled-bg-color: var(--si-fill-color-blank);
+  --si-button-disabled-border-color: var(--si-border-color-light);
+  --si-button-hover-text-color: var(--si-color-primary);
+  --si-button-hover-bg-color: var(--si-color-primary-light-9);
+  --si-button-hover-border-color: var(--si-color-primary-light-7);
+  --si-button-active-text-color: var(--si-button-hover-text-color);
+  --si-button-active-border-color: var(--si-color-primary);
+  --si-button-active-bg-color: var(--si-button-hover-bg-color);
+  --si-button-outline-color: var(--si-color-primary-light-5);
+  --si-button-active-color: var(--si-text-color-primary);
+}
+@each $val in primary, success, warning, info, danger {
+  .si-button--$(val) {
+    --si-button-text-color: var(--si-color-white);
+    --si-button-bg-color: var(--si-color-$(val));
+    --si-button-border-color: var(--si-color-$(val));
+    --si-button-outline-color: var(--si-color-$(val)-light-5);
+    --si-button-active-color: var(--si-color-$(val)-dark-2);
+    --si-button-hover-text-color: var(--si-color-white);
+    --si-button-hover-bg-color: var(--si-color-$(val)-light-3);
+    --si-button-hover-border-color: var(--si-color-$(val)-light-3);
+    --si-button-active-bg-color: var(--si-color-$(val)-dark-2);
+    --si-button-active-border-color: var(--si-color-$(val)-dark-2);
+    --si-button-disabled-text-color: var(--si-color-white);
+    --si-button-disabled-bg-color: var(--si-color-$(val)-light-5);
+    --si-button-disabled-border-color: var(--si-color-$(val)-light-5);
+  }
+  .si-button--$(val).is-plain {
+    --si-button-text-color: var(--si-color-$(val));
+    --si-button-bg-color: var(--si-color-$(val)-light-9);
+    --si-button-border-color: var(--si-color-$(val)-light-5);
+    --si-button-hover-text-color: var(--si-color-white);
+    --si-button-hover-bg-color: var(--si-color-$(val));
+    --si-button-hover-border-color: var(--si-color-$(val));
+    --si-button-active-text-color: var(--si-color-white);
+  }
+}
+.si-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  color: var(--si-button-text-color);
+  border-color: var(--si-button-border-color);
+  /*禁止文本在其容器内换行*/
+  white-space: nowrap;
+  cursor: pointer;
+  box-sizing: border-box;
+  /*移除元素的轮廓（outline）*/
+  outline: none;
+  transition: 0.1s;
+  font-weight: var(--si-button-font-weight);
+  /*禁止文本选择。*/
+  user-select: none;
+  vertical-align: middle;
+  /*设置这个属性后，浏览器会去除某些 HTML 元素的默认样式，通常是原生控件（如按钮、下拉框、单选框等）的样式，使它们不再具有操作系统和浏览器自带的默认外观。这个属性常用于自定义这些元素的外观。*/
+  -webkit-appearance: none;
+  background-color: var(--si-button-bg-color);
+  border: var(--si-border);
+  border-color: var(--si-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--si-font-size-base);
+  border-radius: var(--si-border-radius-base);
+  /*+：+ 是 CSS 中的相邻兄弟选择器，选择紧接着的同级元素。*/
+  & + & {
+    margin-left: 12px;
+  }
+  /*  focus  CSS 伪类表示获得焦点的元素（如表单输入）。当用户点击或轻触一个元素或使用键盘的 Tab 键选择它时，它会被触发。*/
+  &:hover {
+    /* 鼠标悬停样式 */
+    color: var(--si-button-hover-text-color);
+    background-color: var(--si-button-hover-bg-color);
+    border-color: var(--si-button-hover-border-color);
+  }
+
+  &:focus {
+    /* 焦点样式可自定义，或者什么也不写 */
+    outline: var(--si-button-outline-color);
+  }
+  &:active {
+    color: var(--si-button-active-text-color);
+    border-color: var(--si-button-active-border-color);
+    background-color: var(--si-button-active-bg-color);
+    outline: none;
+  }
+
+  /* &.is-plain {
+            --si-button-hover-text-color: var(--si-color-primary);
+            --si-button-hover-bg-color: var(--si-fill-color-blank);
+            --si-button-hover-border-color: var(--si-color-primary);
+        } */
+
+  /*round*/
+  &.is-round {
+    border-radius: var(--si-border-radius-round);
+  }
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  /*disabled*/
+  /*
+        接续兄弟组合器
+        --接续兄弟选择器（+）介于两个选择器之间，当第二个元素紧跟在第一个元素之后，并且两个元素都是属于同一个父元素的子元素，则第二个元素将被选中
+        属性选择器 []
+    */
+  /* &.is-disabled {
+
+    } */
+  &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:focus,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus {
+    color: var(--si-button-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+    background-color: var(--si-button-disabled-bg-color);
+    border-color: var(--si-button-disabled-border-color);
+  }
+  [class*='si-icon'] + span {
+    margin-left: 6px;
+  }
+}
+
+.si-button--large {
+  --si-button-size: 40px;
+  height: var(--si-button-size);
+  padding: 12px 19px;
+  font-size: var(--si-font-size-base);
+  border-radius: var(--si-border-radius-base);
+}
+.si-button--small {
+  --si-button-size: 24px;
+  height: var(--si-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--si-border-radius-base) - 1px);
+}

@@ -1,0 +1,25 @@
+body {
+  font-family: var(--si-font-family);
+  font-weight: 400;
+  font-size: var(--si-font-size-base);
+  color: var(--si-text-color-primary);
+  /*这个属性用于启用Webkit浏览器（如Chrome、Safari、Edge等）中的字体抗锯齿效果，使得字体显示更加平滑。antialiased表示启用抗锯齿，使字体的边缘更加平滑，减少锯齿状效果。*/
+  -webkit-font-smoothing: antialiased;
+  /*这是针对Firefox浏览器在macOS上的字体平滑设置。grayscale使得字体渲染更加平滑，且使用灰度级抗锯齿效果，而不是默认的 subpixel anti-aliasing（子像素抗锯齿）。*/
+  -moz-osx-font-smoothing: grayscale;
+  /*这个属性用于禁用移动端浏览器在点击元素时出现的默认高亮效果。*/
+  -webkit-tap-highlight-color: transparent;
+}
+a {
+  color: var(--si-color-primary);
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: var(--si-color-primary-light-3);
+  }
+
+  &:active {
+    color: var(--si-color-primary-dark-2);
+  }
+}

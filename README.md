@@ -1,4 +1,4 @@
-# silver-ui
+# Silver-ui
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -18,38 +18,57 @@ import '@chuck1/silver-ui/dist/si-element.css' // 样式
 createApp(App).use(SiElement).mount('#app') // 组件挂载
 ```
 
-## Recommended IDE Setup
+## 项目结构
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```markdown
+|--docs // 文档
+|--packages
+|  |--components // 组件
+|  |  |--button // 按钮
+|  |  |  |--src 
+|  |  |  |  |--button.vue // 组件html
+|  |  |  |  |--style.css // 组件样式
+|  |  |  |  |--types.ts // 类型
+|  |  |  |--__tests__ // 测试
+|  |  |  |  |--button.spec.ts // 测试用例
+|  |  |--index.ts // 导出组件
+|  |--hooks // 钩子
+|  |--types // 类型
+|  |--play // 测试环境
+|  |--sliver-ui // 组件库 用于发布
 ```
 
-### Compile and Hot-Reload for Development
+## TODO
 
-```sh
-npm run dev
-```
+- [x] 组件测试环境
+- [x] 覆盖率测试
+- [ ] 组件测试完善
 
-### Type-Check, Compile and Minify for Production
+- 样式在不同环境中的使用
+- [x] 开发环境
+- [x] 文档环境
+- [x] 生产环境
 
-```sh
-npm run build
-```
+- [x] 组件库文档准备
+- [x] 组件库文档完善
 
-### Lint with [ESLint](https://eslint.org/)
+- [x] 组件库打包
+- [x] 发布到npm
 
-```sh
-npm run lint
-```
+1. monorepo架构
+
+## 特色
+
+\- 🌈 提供 10+ 个高质量通用组件
+
+\- 🔥 使用 TypeScript 开发，提供完整的类型定义
+
+\- 📦 开箱即用的高质量 Vue 组件
+
+\- 🎨 支持主题定制，可配置设计规范
+
+\- 🌍 国际化支持
+
+\- ⚡️ 支持按需引入和 Tree Shaking
+
+\- 🎯 使用 Vite 构建，开发体验极致
