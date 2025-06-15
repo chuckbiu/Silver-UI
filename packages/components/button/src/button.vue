@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Icon from '../../components/Icon/Icon.vue'
-import type { buttonProps } from './types.ts'
+import Icon  from 'sliver-ui'
+import type { ButtonProps } from './types.ts'
 
 defineOptions({
   name: 'si-button',
 })
-withDefaults(defineProps<buttonProps>(), {
+withDefaults(defineProps<ButtonProps>(), {
   nativeType: 'button',
-  //  disabled: true, // 设置默认值
+  // disabled: true, // 设置默认值
   // loading: false, // 设置默认值
 })
 const _ref = ref<HTMLButtonElement>()
@@ -42,5 +42,6 @@ defineExpose({
   </button>
 </template>
 
-<style scoped src="./style.css">
+<style scoped>
+/* @import "./style.css"; */
 </style>

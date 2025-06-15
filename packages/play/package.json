@@ -1,5 +1,5 @@
 {
-  "name": "@chuck1/silver-ui",
+  "name": "@silver-ui/play",
   "type": "module",
   "version": "1.0.1",
   "packageManager": "pnpm@9.5.0",
@@ -39,24 +39,41 @@
     "dist"
   ],
   "scripts": {
-    "play:dev": "pnpm --filter @silver-ui/play dev",
-    "play:build": "pnpm --filter @silver-ui/play build",
-    "play:preview": "pnpm --filter @silver-ui/play preview",
-    "docs:dev": "pnpm --filter docs docs:dev",
-    "docs:build": "pnpm --filter docs docs:build",
-    "docs:preview": "pnpm --filter docs docs:preview",
-    "lint": "eslint ./packages ",
-    "lint:fix": "eslint ./packages --fix",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage"
+    "dev": "vite",
+    "build": "npm run build-only && npm run move-style",
+    "preview": "vite preview",
+    "build-only": "run-p build-es build-umd",
+    "build-umd": "vite build --config vite.umd.config.ts",
+    "build-es": "vite build --config vite.es.config.ts",
+    "move-style": "move-file dist/es/si-element.css dist/si-element.css",
+    "type-check": "vue-tsc --build",
+    "lint": "eslint . --fix",
+    "lint:fix": "eslint . --fix",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "vue": "catalog:"
+    "vue": "^3.5.13"
   },
   "dependencies": {
-    "@silver-ui/constants": "workspace:^",
-    "silver-ui": "workspace:*"
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@popperjs/core": "^2.11.8",
+    "@vitepress-demo-preview/component": "^2.3.2",
+    "@vitepress-demo-preview/plugin": "^1.4.0",
+    "async-validator": "^4.2.5",
+    "axios": "^1.8.2",
+    "eslint-plugin-format": "^1.0.1",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "rollup": "^4.40.0",
+    "unplugin-vue-macros": "^2.14.5",
+    "vitest": "^3.0.8",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",

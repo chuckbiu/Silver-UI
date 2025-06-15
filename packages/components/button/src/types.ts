@@ -2,7 +2,7 @@ type type = 'default' | 'primary' | 'success' | 'danger' | 'warning' | 'info'
 type size = 'small' | 'large'
 type NativeType = 'button' | 'submit' | 'reset'
 
-export interface buttonProps {
+export interface ButtonProps {
   autofocus?: boolean
   type?: type
   size?: size

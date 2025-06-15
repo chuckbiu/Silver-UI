@@ -65,7 +65,7 @@ Form 组件允许你验证用户的输入是否符合规范，来帮助你找到
 | 属性名 | 说明                                                         | 类型                  | Default |
 | :----- | :----------------------------------------------------------- | :-------------------- | :------ |
 | prop   | `model` 的键名。 它可以是一个属性的值(如 `a.b.0` 或 `['a', 'b', '0']`)。 在使用了 `validate`、`resetFields` 的方法时，该属性是必填的。 | `string` / `string[]` | —       |
-| rules  | 表单验证规则, 具体配置见[下表](https://element-plus.org/zh-CN/component/form.html#formitemrule), 更多内容可以参考[async-validator](https://github.com/yiminghe/async-validator) | `object`              |         |
+| rules  | 表单验证规则, 更多内容可以参考[async-validator](https://github.com/yiminghe/async-validator) | `object`              |         |
 
 **FormItemRule**
 
